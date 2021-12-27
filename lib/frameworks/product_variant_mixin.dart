@@ -496,7 +496,13 @@ mixin ProductVariantMixin {
       return;
     }
 
-    final _mapAttribute = Map<String, String>.from(mapAttribute);
+    print('mapAttr: ${mapAttribute.keys.toList()}');
+    var cleanedAttrMap = Map<String?,String?>.from(mapAttribute);
+    cleanedAttrMap.removeWhere((key, value) => value == null);
+    cleanedAttrMap =  cleanedAttrMap.map((key, value) => MapEntry(key?.replaceAll(' ', ''), value));
+    print('cleanedAttrMap: ${cleanedAttrMap}');
+
+    final _mapAttribute = Map<String, String>.from(cleanedAttrMap);
     productVariation =
         Provider.of<ProductModel>(context, listen: false).productVariation;
     var message = cartModel.addProductToCart(

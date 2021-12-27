@@ -329,8 +329,9 @@ class Product {
         });
       }
       // ignore: empty_catches
-      catch (e) {}
-
+      catch (e) {
+        print('error with attributes: $e' );}
+      // print('error with attributes: ' );
       attributes = attributeList.toList();
 
       try {

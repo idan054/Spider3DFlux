@@ -8,6 +8,7 @@ class ProductAttribute {
   List optionSlugs = [];
   bool? isVisible;
   bool? isVariation;
+
   String? get cleanSlug => slug?.replaceAll('pa_', '');
 
   ProductAttribute.fromJson(Map<String, dynamic> parsedJson) {
@@ -98,7 +99,13 @@ class Attribute {
   Attribute.fromJson(Map<String, dynamic> parsedJson) {
     id = parsedJson['id'];
     name = parsedJson['name'];
-    option = parsedJson['option'];
+    var _option = parsedJson['option'];
+    try {
+      _option = Uri.decodeComponent(parsedJson['option']);
+    } catch (e) {
+      print(e);
+    }
+    option = _option;
   }
 
   Attribute.fromMagentoJson(Map<String, dynamic> parsedJson) {

@@ -35,6 +35,7 @@ class ProductCard extends StatelessWidget {
   final tablet;
   final double? ratioProductImage;
   final bool enableBottomAddToCart;
+
   ProductCard({
     required this.item,
     this.width,
@@ -477,17 +478,21 @@ class ProductCard extends StatelessWidget {
 
     /// Original:
     return GestureDetector(
-      onTap: onTapProduct,
-      child: ImageTools.image(
-        /// Original card view
-        url: item.imageFeature,
-        width: width,
-        size: kSize.medium,
-        isResize: true,
-        fit: kCardFit,
-        offset: offset ?? 0.0,
-      ),
-    );
+        onTap: onTapProduct,
+        child:
+
+
+
+        ImageTools.image(
+          /// Original card view
+          url: item.imageFeature,
+          width: width,
+          size: kSize.medium,
+          isResize: true,
+          fit: kCardFit,
+          offset: offset ?? 0.0,
+        ),
+        );
   }
 
   void _onTapProduct(context) {

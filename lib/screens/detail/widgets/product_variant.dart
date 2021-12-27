@@ -69,6 +69,10 @@ class _StateProductVariant extends State<ProductVariant> {
           Map<String?, String?>? mapAttribute,
           ProductVariation? variation,
         }) {
+
+          print('vvariations: $variations');
+          print('mapAttributeLoaded: $mapAttribute');
+
           setState(() {
             if (productInfo != null) {
               product = productInfo;
@@ -193,6 +197,10 @@ class _StateProductVariant extends State<ProductVariant> {
     Map<String?, String?>? mapAttribute,
     Function? onFinish,
   }) {
+    print('onSelectProductVariant, MapAttribute: $mapAttribute');
+    print('onSelectProductVariant, attr: ${attr?.slug}');
+    print('onSelectProductVariant, val: $val');
+
     services.widget.onSelectProductVariant(
       attr: attr!,
       val: val,

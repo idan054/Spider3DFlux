@@ -21,9 +21,11 @@ mixin WooVariantMixin on ProductVariantMixin {
     })?
         onLoad,
   }) async {
-    if (product!.attributes!.isEmpty) {
+    print('product!.attributes!.isEmpty ${product!}');
+    if (product.attributes!.isEmpty) {
       return;
     }
+
 
     var mapAttribute = <String?, String?>{};
     var variations = <ProductVariation>[];
@@ -144,6 +146,8 @@ mixin WooVariantMixin on ProductVariantMixin {
   /// Return true if mapAttribute match with any of variations.
   bool isValidProductVariation(
       List<ProductVariation> variations, Map<String?, String?>? mapAttribute) {
+    print('Map Of Attrs: ${mapAttribute}');
+    print('Map Of variations: ${variations.map((e) => e.attributeMap)}');
     for (var variation in variations) {
       if (variation.hasSameAttributes(mapAttribute!)) {
         /// Hide out of stock variation
@@ -151,6 +155,7 @@ mixin WooVariantMixin on ProductVariantMixin {
             !variation.inStock!) {
           return false;
         }
+
         return true;
       }
     }
@@ -197,11 +202,14 @@ mixin WooVariantMixin on ProductVariantMixin {
     List<ProductVariation> variations,
   ) {
     var listWidget = <Widget>[];
+    print('mapAttribute: $mapAttribute');
+    print('product.attributes: ${product.attributes}');
 
     final checkProductAttribute = product.attributes?.isNotEmpty ?? false;
     if (checkProductAttribute) {
       for (var attr in product.attributes!) {
         if (attr.name?.isNotEmpty ?? false) {
+
           var options =
               _getValidAttributeOptions(attr, mapAttribute!, variations);
 
@@ -227,6 +235,7 @@ mixin WooVariantMixin on ProductVariantMixin {
               }
             });
           }
+          print('options: ${options}');
 
           listWidget.add(
             BasicSelection(

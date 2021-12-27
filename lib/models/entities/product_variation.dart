@@ -38,7 +38,7 @@ class ProductVariation {
     parsedJson['attributes']?.forEach((item) {
       final attribute = Attribute.fromJson(item);
       attributeList.add(attribute);
-      attributeMap[attribute.name] = attribute;
+      attributeMap[attribute.name] = attribute ;
     });
     attributes = attributeList;
   }
@@ -237,6 +237,8 @@ class ProductVariation {
         /// In case this attribute can be any option, don't need to check.
         continue;
       }
+     // ;
+     //  print( Uri.decodeComponent(attributeMap[keys[i]]!.option ?? ''));
       if (attributeMap[keys[i]]!.option != values[i]) {
         return isSame = false;
       }
