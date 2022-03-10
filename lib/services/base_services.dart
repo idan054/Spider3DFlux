@@ -5,11 +5,9 @@ import 'package:http_auth/http_auth.dart';
 
 import '../common/config.dart';
 import '../common/constants.dart';
-import '../models/entities/listing_booking.dart';
 import '../models/entities/paging_response.dart';
 import '../models/entities/prediction.dart';
 import '../models/index.dart';
-import '../models/vendor/store_model.dart';
 import 'wordpress/blognews_api.dart';
 
 export '../models/entities/paging_response.dart';

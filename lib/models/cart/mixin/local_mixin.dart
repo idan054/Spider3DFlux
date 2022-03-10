@@ -2,8 +2,6 @@ import 'package:localstorage/localstorage.dart';
 
 import '../../../common/constants.dart';
 import '../../../services/service_config.dart';
-import '../../entities/product.dart';
-import '../../entities/product_variation.dart';
 import '../../index.dart';
 import 'cart_mixin.dart';
 

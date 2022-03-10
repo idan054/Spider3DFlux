@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fstore/common/config.dart';
-import 'package:fstore/common/tools/image_tools.dart';
 import 'package:provider/provider.dart';
-import 'package:visibility_detector/visibility_detector.dart';
 
-import '../../../generated/l10n.dart';
 import '../../../models/index.dart' show AppModel, Product;
 import '../../../services/index.dart';
 import '../../../widgets/product/product_card_view.dart';

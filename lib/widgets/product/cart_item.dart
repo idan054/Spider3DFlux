@@ -9,10 +9,6 @@ import '../../models/entities/index.dart' show AddonsOption;
 import '../../models/index.dart' show AppModel, Product, ProductVariation;
 import '../../services/index.dart';
 import 'product_variant.dart';
-import 'package:flutter/material.dart';
-import 'package:fstore/screens/my_thingi/thingi_screen.dart';
-import 'package:inspireui/inspireui.dart' show AutoHideKeyboard, StoryWidget;
-import 'package:provider/provider.dart';
 
 class ShoppingCartRow extends StatelessWidget {
   ShoppingCartRow({

@@ -13,7 +13,6 @@ import 'package:flutter/src/material/feedback.dart';
 // ignore: implementation_imports
 import 'package:flutter/src/material/theme.dart';
 // ignore: implementation_imports
-import 'package:flutter/src/material/theme_data.dart';
 // ignore: implementation_imports
 import 'package:flutter/src/material/tooltip_theme.dart';
 import 'package:flutter/widgets.dart';

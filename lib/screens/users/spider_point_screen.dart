@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:fstore/models/entities/user.dart';
 import 'package:fstore/models/user_model.dart';
 import 'package:fstore/services/dependency_injection.dart';
-import 'package:fstore/services/service_config.dart';
-import 'package:inspireui/utils/logs.dart';
 import 'package:provider/provider.dart';
 import 'package:share/share.dart';
-import '../../common/config.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../common/config.dart';
 
 class SpidersPointScreen extends StatefulWidget {
   bool isFullPage;

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fstore/models/entities/product.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 

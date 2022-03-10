@@ -1,13 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 // Import the firebase_core and cloud_firestore plugin
 import 'package:firebase_core/firebase_core.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-
-import 'firestore_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

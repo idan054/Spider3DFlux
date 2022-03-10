@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../common/tools.dart';
 import '../../screens/base_screen.dart';
 
 class StaticSplashScreen extends StatefulWidget {

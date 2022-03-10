@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:quiver/strings.dart';
 
@@ -10,8 +11,6 @@ import '../../entities/address.dart';
 import '../../entities/shipping_method.dart';
 import '../../entities/user.dart';
 import 'cart_mixin.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 // void main() => runApp(MyApp());
 

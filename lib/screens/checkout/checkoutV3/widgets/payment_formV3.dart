@@ -1,15 +1,10 @@
-import 'package:collection/collection.dart' show IterableExtension;
-import 'package:country_pickers/country.dart' as picker_country;
-import 'package:country_pickers/country_pickers.dart' as picker;
+import 'package:credit_card_validator/credit_card_validator.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:fstore/models/cart/cart_base.dart';
 import 'package:fstore/models/entities/address.dart';
 import 'package:fstore/screens/checkout/widgets/my_creditcard_address.dart';
-import 'package:localstorage/localstorage.dart';
 import 'package:provider/provider.dart';
-import 'package:credit_card_validator/credit_card_validator.dart';
 
 
 

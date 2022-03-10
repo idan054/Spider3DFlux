@@ -1,14 +1,12 @@
 import 'dart:async';
-import 'dart:ui';
+import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:fstore/screens/checkout/checkoutV3/RadioButtonV3.dart';
-import 'package:fstore/screens/checkout/checkoutV3/checkoutV3_provider.dart';
-import 'package:fstore/screens/checkout/checkoutV3/checkout_screenV3.dart';
-import 'package:fstore/screens/my_thingi/set_thingitoken.dart';
+import 'package:in_app_update/in_app_update.dart';
 import 'package:provider/provider.dart';
+import 'package:upgrader/upgrader.dart';
 
 import 'app_init.dart';
 import 'common/config.dart';
@@ -21,6 +19,8 @@ import 'models/index.dart';
 import 'models/notification_model.dart';
 import 'routes/route.dart';
 import 'screens/blog/models/list_blog_model.dart';
+import 'screens/checkout/checkoutV3/checkoutV3_provider.dart';
+import 'screens/my_thingi/set_thingitoken.dart';
 import 'services/dependency_injection.dart';
 import 'services/index.dart';
 import 'services/notification/notification_service.dart';
@@ -132,9 +132,31 @@ class AppState extends State<App>
     }
   }
 
+  AppUpdateInfo? _updateInfo;
+
+  // Platform messages are asynchronous, so we initialize in an async method.
+  Future<void> checkForUpdate() async {
+   await InAppUpdate.checkForUpdate().then((info) {
+        _updateInfo = info;
+        log("update details ${info.updateAvailability}, ${info.availableVersionCode}, ${info.packageName}, ${info.flexibleUpdateAllowed}, ${info.immediateUpdateAllowed}");
+        if(_updateInfo!=null){
+          if(_updateInfo!.updateAvailability == 2) {
+            if (_updateInfo!.flexibleUpdateAllowed) {
+              InAppUpdate.startFlexibleUpdate();
+            } else if (_updateInfo!.immediateUpdateAllowed) {
+              InAppUpdate.performImmediateUpdate();
+            }
+          }
+        }
+    }).catchError((e) {
+    });
+  }
+
+
   @override
   void initState() {
     printLog('[AppState] initState');
+    checkForUpdate();
     _app = AppModel(widget.languageCode);
     WidgetsBinding.instance?.addObserver(this);
 
@@ -278,7 +300,12 @@ class AppState extends State<App>
                   SubCupertinoLocalizations.delegate,
                 ],
                 supportedLocales: S.delegate.supportedLocales,
-                home: const Scaffold(body: AppInit()),
+                home: UpgradeAlert(
+                  dialogStyle: UpgradeDialogStyle.cupertino,
+                  countryCode: 'IL',
+                  debugLogging: true,
+                  child: const Scaffold(body: AppInit()),
+                ),
                 // home: const CheckoutScreenV3(),
                 routes: Routes.getAll(),
                 debugShowCheckedModeBanner: false,

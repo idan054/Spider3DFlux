@@ -1,9 +1,10 @@
+import 'package:basic_utils/basic_utils.dart';
 import 'package:intl/intl.dart';
 import 'package:quiver/strings.dart';
+
 import '../../models/index.dart' show AddonsOption, Product;
 import '../config.dart' show kAdvanceConfig;
 import '../constants.dart' show printLog;
-import 'package:basic_utils/basic_utils.dart';
 
 class PriceTools {
   static String? getAddsOnPriceProductValue(

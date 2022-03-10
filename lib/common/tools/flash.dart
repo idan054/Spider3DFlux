@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class FlashHelper {
   static Completer<BuildContext> _buildCompleter = Completer<BuildContext>();

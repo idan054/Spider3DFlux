@@ -1,16 +1,4 @@
-import 'dart:convert';
-import 'package:chaleno/chaleno.dart';
-import 'package:fstore/common/constants.dart';
-import 'package:http/http.dart';
-import 'package:html/parser.dart';
-import 'package:html/dom.dart';
-import 'package:web_scraper/web_scraper.dart';
-import 'package:dio/dio.dart';
-import 'package:http/http.dart' as http;
-import 'package:html/parser.dart' as parser;
-import 'package:html/dom.dart';
 
-import 'dart:io';
 import 'package:html/parser.dart';
 import 'package:puppeteer/puppeteer.dart';
 

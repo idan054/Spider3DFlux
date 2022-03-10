@@ -1,23 +1,14 @@
-import 'package:collection/collection.dart' show IterableExtension;
-import 'package:country_pickers/country.dart' as picker_country;
-import 'package:country_pickers/country_pickers.dart' as picker;
+import 'package:credit_card_validator/credit_card_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:provider/provider.dart';
 
-import '../../../common/config.dart';
 import '../../../common/constants.dart';
 import '../../../generated/l10n.dart';
 import '../../../models/index.dart'
     show Address, CartModel, Country, CreditCard, CreditCardModel, UserModel;
-import '../../../services/index.dart';
-import '../../../widgets/common/place_picker.dart';
 import '../checkout_screen.dart';
-import '../choose_address_screen.dart';
-import '../review_screen.dart';
 import 'my_credit_card.dart';
-import 'package:credit_card_validator/credit_card_validator.dart';
 
 class MyCreditCardForm extends StatefulWidget {
   final bool isFullPage;

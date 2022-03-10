@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fstore/screens/checkout/checkoutV3/checkout_screenV3.dart';
-import 'package:fstore/screens/my_thingi/thingi_screen.dart';
 import 'package:inspireui/inspireui.dart' show AutoHideKeyboard, StoryWidget;
 import 'package:provider/provider.dart';
 
@@ -8,11 +6,12 @@ import '../common/constants.dart';
 import '../common/tools.dart';
 // import '../frameworks/vendor/route.dart';
 import '../menu/maintab.dart';
-import '../models/entities/blog.dart';
 import '../models/index.dart' show Product, SearchModel, User;
 import '../modules/dynamic_layout/config/app_config.dart';
 import '../modules/dynamic_layout/search/home_search_page.dart';
+import '../screens/checkout/checkoutV3/checkout_screenV3.dart';
 import '../screens/index.dart';
+import '../screens/my_thingi/thingi_screen.dart';
 import '../screens/order_history/index.dart';
 import '../screens/pages/static_page.dart';
 import '../screens/user_update/user_update_screen.dart';

@@ -1,29 +1,17 @@
 /// Flutter code sample for DropdownButton
-
-// This sample shows a `DropdownButton` with a large arrow icon,
-// purple text style, and bold purple underline, whose value is one of "One",
-// "Two", "Free", or "Four".
-//
-// ![](https://flutter.github.io/assets-for-api-docs/assets/material/dropdown_button.png)
-
 import 'dart:convert';
 import 'dart:math';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:fstore/common/config.dart';
-import 'dart:convert';
-// import 'package:dart_random_choice/dart_random_choice.dart';
-import 'package:fstore/common/constants.dart';
-import 'package:fstore/screens/my_thingi/set_thingitoken.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
-import 'package:intl/intl.dart';
 import 'package:translator/translator.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../common/config.dart';
+// import 'package:dart_random_choice/dart_random_choice.dart';
+import '../../common/constants.dart';
+import 'set_thingitoken.dart';
 
 /// This is the main application widget.
 class ThingiPage extends StatefulWidget {

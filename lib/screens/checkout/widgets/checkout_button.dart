@@ -1,16 +1,10 @@
-import 'dart:convert' as convert;
-import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:fstore/screens/checkout/widgets/payment_methods.dart';
 import 'package:provider/provider.dart';
-import 'package:quiver/strings.dart';
-import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 import '../../../common/config.dart';
-import '../../../common/constants.dart';
 import '../../../common/tools.dart';
 import '../../../generated/l10n.dart';
-import '../../../models/booking/booking_model.dart';
 import '../../../models/index.dart'
     show
         AppModel,
@@ -20,10 +14,7 @@ import '../../../models/index.dart'
         ShippingMethodModel,
         TaxModel,
         UserModel;
-import '../../../modules/native_payment/index.dart';
-import '../../../services/index.dart';
-import '../checkout_screen.dart';
-import '../review_screen.dart';
+import 'payment_methods.dart';
 
 class CheckoutButton extends StatefulWidget {
   final String? text;

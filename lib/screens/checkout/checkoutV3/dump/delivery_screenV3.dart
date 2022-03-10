@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:fstore/common/theme/colors.dart';
-import 'package:fstore/models/cart/cart_base.dart';
-import 'package:fstore/screens/checkout/checkoutV3/widgets/delivery_formV3.dart';
-import 'package:fstore/screens/checkout/widgets/my_creditcard_address.dart';
 import 'package:provider/provider.dart';
+
+import '../../../../common/theme/colors.dart';
 import '../../../../generated/l10n.dart';
+import '../../../../models/cart/cart_base.dart';
+import '../widgets/delivery_formV3.dart';
 
 /// Not in use
 class DeliveryScreenV3 extends StatelessWidget {

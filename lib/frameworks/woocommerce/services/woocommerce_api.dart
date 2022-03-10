@@ -1,5 +1,3 @@
-/// This library is customize from the woocommerce_api: ^0.0.8
-import 'dart:async';
 import 'dart:collection';
 import 'dart:convert';
 import 'dart:core';
@@ -7,11 +5,11 @@ import 'dart:io' show HttpClient, HttpHeaders, X509Certificate;
 import 'dart:math';
 
 import 'package:crypto/crypto.dart' as crypto;
-import 'package:fstore/services/https.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
 
 import '../../../common/constants.dart';
+import '../../../services/https.dart';
 
 class QueryString {
   static Map parse(String query) {

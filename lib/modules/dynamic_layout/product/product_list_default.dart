@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -7,7 +6,6 @@ import '../../../models/index.dart' show AppModel, Product;
 import '../../../services/index.dart';
 import '../helper/custom_physic.dart';
 import '../helper/helper.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class ProductListDefault extends StatelessWidget {
   final width;

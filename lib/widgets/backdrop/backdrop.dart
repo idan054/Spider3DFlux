@@ -13,11 +13,9 @@
 // limitations under the License.
 
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../common/constants.dart';
 import '../../common/tools/adaptive_tools.dart';
-import '../../generated/l10n.dart';
 import '../../services/service_config.dart';
 import 'backdrop_constants.dart';
 

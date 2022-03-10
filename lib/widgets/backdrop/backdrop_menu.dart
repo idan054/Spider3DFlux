@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fstore/screens/search/widgets/recent/recent_search_custom.dart';
 import 'package:provider/provider.dart';
+
 import '../../common/config.dart';
 import '../../common/constants.dart';
 import '../../common/tools.dart';

@@ -1,9 +1,6 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
-import 'package:fstore/modules/dynamic_layout/config/product_config.dart';
-import 'package:fstore/modules/dynamic_layout/dynamic_layout.dart';
-import 'package:fstore/modules/dynamic_layout/product/product_list.dart';
 import 'package:fstore/modules/dynamic_layout/vertical/vertical.dart';
 import 'package:fstore/widgets/home/index.dart';
 import 'package:provider/provider.dart';

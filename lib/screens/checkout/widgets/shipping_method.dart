@@ -4,20 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:fstore/models/payment_method_model.dart';
 import 'package:fstore/models/tax_model.dart';
 import 'package:fstore/models/user_model.dart';
-import 'package:fstore/screens/checkout/checkout_screen.dart';
-import 'package:fstore/screens/checkout/widgets/shipping_form.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:quiver/strings.dart';
 
 import '../../../common/config.dart' show kPaymentConfig, kLoadingWidget;
 import '../../../common/constants.dart';
 import '../../../common/tools.dart';
-import '../../../generated/l10n.dart';
 import '../../../models/cart/cart_model.dart';
 import '../../../models/shipping_method_model.dart';
 import '../../../services/index.dart';
-import '../review_screen.dart';
 
 class ShippingMethods extends StatefulWidget {
   final Function? onBack;

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:fstore/models/cart/cart_base.dart';
-import 'package:fstore/models/index.dart';
-
 // import 'package:fstore/models/cart/entities/payment_method.dart';
 import 'package:provider/provider.dart';
 
+import '../../../models/index.dart';
 import 'checkoutV3_provider.dart';
 
 // Todo change the colors in this files to based Theme

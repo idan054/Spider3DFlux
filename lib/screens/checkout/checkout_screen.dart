@@ -1,20 +1,12 @@
-import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:fstore/common/constants.dart';
 import 'package:fstore/menu/maintab_delegate.dart';
-import 'package:fstore/screens/checkout/widgets/checkout_button.dart';
 import 'package:provider/provider.dart';
 
 import '../../common/config.dart';
-import '../../generated/l10n.dart';
 import '../../models/index.dart' show CartModel, Order;
-import '../../services/index.dart';
-import '../../widgets/product/product_bottom_sheet.dart';
 import '../base_screen.dart';
 import 'review_screen.dart';
-import 'widgets/payment_methods.dart';
-import 'widgets/shipping_form.dart';
 import 'widgets/success.dart';
 
 class Checkout extends StatefulWidget {

@@ -14,23 +14,11 @@ import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 import 'package:transparent_image/transparent_image.dart';
 
-import '../../services/index.dart' show Config;
-import '../config.dart' show kAdvanceConfig, serverConfig;
-import '../constants.dart' show kDefaultImage, kEmptyColor, kImageProxy, kIsWeb;
-import 'dart:math' as math;
-
-import 'package:flash/flash.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
 import '../../common/config.dart';
 import '../../common/constants.dart';
-import '../../common/tools.dart';
-import '../../generated/l10n.dart';
-import '../../models/index.dart'
-    show AppModel, CartModel, Product, ProductVariation, RecentModel;
-import '../../routes/flux_navigate.dart';
+import '../../services/index.dart' show Config;
 import '../../services/service_config.dart';
+import '../constants.dart' show kDefaultImage, kEmptyColor, kImageProxy, kIsWeb;
 
 enum kSize { small, medium, large } // Lol enum just a class that let u made values. no more.
 

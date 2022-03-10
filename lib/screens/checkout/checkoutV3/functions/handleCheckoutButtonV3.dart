@@ -1,21 +1,11 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:fstore/common/config.dart';
-
-// package:fstore/frameworks/woocommerce/index.dart
-import 'package:fstore/models/booking/booking_model.dart';
-import 'package:fstore/models/cart/cart_base.dart';
-import 'package:fstore/models/entities/order.dart';
-import 'package:fstore/models/payment_method_model.dart';
-import 'package:fstore/modules/native_payment/credit_card/index.dart';
-import 'package:fstore/services/services.dart';
-
 // import 'package:fstore/frameworks/woocommerce/index.dart';
 import 'package:provider/provider.dart';
 
-import '../../webview_checkout_success_screen.dart';
-import '../checkoutV3_provider.dart';
+import '../../../../models/cart/cart_base.dart';
+import '../../../../models/entities/order.dart';
+import '../../../../services/services.dart';
 import 'handleFormV3.dart';
 import 'handleNotesDialogV3.dart';
 
