@@ -1,8 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fstore/models/cart/cart_base.dart';
-import 'package:fstore/screens/checkout/checkoutV3/functions/handleNotesDialogV3.dart';
 import 'package:provider/provider.dart';
+
+import '../../../../models/cart/cart_base.dart';
+import '../functions/handleNotesDialogV3.dart';
 
 /// A build methods widgets for checkout_screenV3.dart
 Widget buildRowPrices(BuildContext context, String type,

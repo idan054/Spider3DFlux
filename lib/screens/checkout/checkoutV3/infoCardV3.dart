@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:fstore/common/constants.dart';
 import 'package:fstore/models/cart/cart_base.dart';
 import 'package:provider/provider.dart';
 
-import 'checkoutV3_provider.dart';
-import 'dump/delivery_screenV3.dart';
 import 'functions/handleFormV3.dart';
 
 class InfoCardV3 extends StatelessWidget {

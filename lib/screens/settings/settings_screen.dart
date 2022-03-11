@@ -1,12 +1,15 @@
+
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart' show CupertinoIcons;
 import 'package:flutter/material.dart';
-import 'package:fstore/screens/users/spider_point_screen.dart';
 import 'package:fstore/screens/my_thingi/thingi_screen.dart';
-import 'package:fstore/screens/checkout/checkoutV3/widgets/payment_formV3.dart';
+import 'package:fstore/screens/users/spider_point_screen.dart';
 import 'package:inspireui/widgets/flux_image.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:provider/provider.dart';
 import 'package:rate_my_app/rate_my_app.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import '../../app.dart';
 import '../../common/config.dart';
 import '../../common/constants.dart';
@@ -17,13 +20,7 @@ import '../../models/notification_model.dart';
 import '../../routes/flux_navigate.dart';
 import '../../services/index.dart';
 import '../../widgets/common/webview.dart';
-import '../index.dart';
-import '../posts/post_screen.dart';
 import '../users/user_point_screen.dart';
-import 'dart:convert' as convert;
-import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 
 class SettingScreen extends StatefulWidget {

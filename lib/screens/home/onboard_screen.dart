@@ -1,21 +1,19 @@
+import 'dart:io' show Platform;
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:fstore/common/config.dart';
-import 'package:fstore/screens/users/login_screen.dart';
+import 'package:flutter/services.dart';
 import 'package:inspireui/widgets/onboarding/intro_slider/intro_slider_wrapper.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../common/config.dart';
 import '../../common/config.dart' as config;
 import '../../common/constants.dart';
-import '../../common/tools.dart';
 import '../../generated/l10n.dart';
 import '../../models/index.dart' show AppModel;
 import 'change_language_mixin.dart';
-import 'package:flutter/services.dart';
-import 'dart:io' show Platform;
 
 class OnBoardScreen extends StatefulWidget {
   OnBoardScreen();

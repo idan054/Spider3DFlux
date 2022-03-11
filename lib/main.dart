@@ -1,20 +1,16 @@
 import 'dart:async';
 import 'dart:io' show HttpClient;
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dio/dio.dart';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart' as foundation;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fstore/screens/my_thingi/thingi_screen.dart';
-import 'package:get_it/get_it.dart';
-import 'package:inspireui/utils/logs.dart';
-import 'package:localstorage/localstorage.dart';
 import 'package:pedantic/pedantic.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import 'app.dart';
 import 'common/config.dart';
 import 'common/constants.dart';
@@ -25,7 +21,6 @@ import 'env.dart';
 import 'services/dependency_injection.dart';
 import 'services/locale_service.dart';
 import 'services/services.dart';
-import 'package:flutter/foundation.dart' as foundation;
 
 void main() async {
   printLog('[main] ===== START main.dart =======');

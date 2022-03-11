@@ -12,7 +12,6 @@ import '../../common/constants.dart';
 import '../../common/tools.dart';
 import '../../generated/l10n.dart';
 import '../../models/index.dart';
-import '../../models/user_model.dart';
 import '../../services/services.dart';
 import '../../widgets/common/login_animation.dart';
 

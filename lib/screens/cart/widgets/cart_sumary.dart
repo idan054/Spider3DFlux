@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart' show CupertinoIcons;
 import 'package:flutter/material.dart';
-import 'package:fstore/screens/users/spider_point_screen.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -10,7 +9,6 @@ import '../../../generated/l10n.dart';
 import '../../../models/index.dart' show AppModel, CartModel, Coupons, Discount;
 import '../../../services/index.dart';
 import 'coupon_list.dart';
-import 'point_reward.dart';
 
 class ShoppingCartSummary extends StatefulWidget {
   ShoppingCartSummary({this.onApplyCoupon});

@@ -15,7 +15,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:fstore/menu/maintab_delegate.dart';
+import '../../menu/maintab_delegate.dart';
 import 'package:provider/provider.dart';
 
 import '../../common/tools.dart';

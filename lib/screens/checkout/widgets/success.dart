@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import '../../../common/config.dart';
 import '../../../common/constants.dart';
 import '../../../generated/l10n.dart';
-import '../../../menu/index.dart' show MainTabControlDelegate;
 import '../../../models/index.dart' show Order, UserModel, PointModel;
 import '../../../routes/flux_navigate.dart';
 import '../../../services/index.dart';

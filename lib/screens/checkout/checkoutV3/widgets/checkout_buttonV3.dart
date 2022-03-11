@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:fstore/common/constants.dart';
-import 'package:fstore/models/cart/cart_base.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../models/cart/cart_base.dart';
 import '../functions/handleCheckoutButtonV3.dart';
 
 class CheckoutButtonV3 extends StatelessWidget {

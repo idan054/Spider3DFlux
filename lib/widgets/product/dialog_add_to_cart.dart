@@ -1,11 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../common/config.dart';
 import '../../models/index.dart' show Product;
 // import '../../modules/booking/booking.dart';
 import '../../screens/detail/widgets/index.dart';
-import '../../screens/detail/widgets/listing_booking.dart';
 import '../../services/index.dart';
 
 class DialogAddToCart {

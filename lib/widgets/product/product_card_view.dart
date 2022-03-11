@@ -1,10 +1,7 @@
 import 'dart:math' as math;
 
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:extended_image/extended_image.dart';
 import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
-import 'package:inspireui/widgets/skeleton_widget/skeleton_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../../common/config.dart';

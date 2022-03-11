@@ -1,13 +1,7 @@
-import 'package:fstore/common/constants.dart';
-import 'package:localstorage/localstorage.dart';
+import 'package:flutter/foundation.dart';
 
 import '../../../common/tools.dart';
-import '../../entities/payment_method.dart';
-import '../../entities/product.dart';
-import '../../entities/product_variation.dart';
-import '../../entities/user.dart';
 import '../../index.dart';
-import 'package:flutter/foundation.dart';
 
 
 mixin CartMixin on ChangeNotifier {

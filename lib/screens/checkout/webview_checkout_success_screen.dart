@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fstore/menu/maintab_delegate.dart';
 
 import '../../common/constants.dart';
 import '../../models/index.dart' show Order;

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:fstore/models/cart/cart_base.dart';
 import 'package:provider/provider.dart';
+
 import 'RadioButtonV3.dart';
-import 'checkoutV3_provider.dart';
-import 'widgets/checkout_buttonV3.dart';
 import 'infoCardV3.dart';
 import 'widgets/build_checkoutScreenV3.dart';
+import 'widgets/checkout_buttonV3.dart';
 
 // Todo Get products on cart         (From provider)
 // Todo Get coupon in use            (From provider)

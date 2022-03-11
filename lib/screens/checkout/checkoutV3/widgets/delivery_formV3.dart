@@ -2,13 +2,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fstore/models/cart/cart_base.dart';
 import 'package:fstore/models/entities/address.dart';
+import 'package:fstore/models/entities/user.dart'; // user funcs
 // import 'package:fstore/models/serializers/index.dart';
 import 'package:fstore/screens/checkout/widgets/my_creditcard_address.dart';
-import 'package:fstore/models/entities/user.dart'; // user funcs
-import 'package:fstore/models/user_model.dart'; // user class
 import 'package:provider/provider.dart';
+
 import '../../../../generated/l10n.dart';
-import '../../../index.dart';
 
 
 

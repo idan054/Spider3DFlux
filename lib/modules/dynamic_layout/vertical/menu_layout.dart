@@ -1,11 +1,10 @@
 import 'dart:async';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:fstore/menu/sidebar.dart';
 import 'package:provider/provider.dart';
+
 import '../../../common/config.dart';
-import '../../../dart_tests.dart';
 import '../../../generated/l10n.dart';
 import '../../../models/index.dart'
     show AppModel, Category, CategoryModel, Product, UserModel;

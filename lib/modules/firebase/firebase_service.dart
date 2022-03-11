@@ -17,7 +17,6 @@ import 'firebase_analytics_service.dart';
 import 'firebase_remote_service.dart';
 import 'realtime_chat/chat_screen.dart';
 import 'realtime_chat/list_chat_screen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class FirebaseServices extends BaseFirebaseServices {
   static final FirebaseServices _instance = FirebaseServices._internal();

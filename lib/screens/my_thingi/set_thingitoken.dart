@@ -1,19 +1,9 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:firebase_remote_config/firebase_remote_config.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:fstore/screens/my_thingi/thingi_screen.dart';
-
-import '../../common/config.dart';
-import '../../common/constants.dart';
-import '../../common/tools.dart';
-import '../../services/base_firebase_services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'thingi_screen.dart';
 
 // region my thingiToken Setup
 

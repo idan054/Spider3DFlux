@@ -12,7 +12,7 @@ description: LOLL
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 14.0.1
+version: 14.0.3
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -178,6 +178,10 @@ dependencies:
   web_scraper: ^0.1.4
   chaleno: ^0.0.5
   puppeteer: ^2.5.0
+
+  ## Update Management
+  in_app_update: ^3.0.0
+  upgrader: ^3.13.0
 
   # Cache Type - Location - in use? (effective)
   # ================================

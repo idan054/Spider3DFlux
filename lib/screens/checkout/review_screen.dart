@@ -1,17 +1,10 @@
 import 'dart:async';
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
-import 'package:fstore/screens/checkout/shippingInfoTile.dart';
-import 'package:fstore/screens/checkout/widgets/checkout_button.dart';
-import 'package:fstore/screens/checkout/widgets/my_credit_card.dart';
-import 'package:fstore/screens/checkout/widgets/my_creditcard_address.dart';
-import 'package:fstore/screens/checkout/widgets/payment_methods.dart';
-import 'package:fstore/screens/checkout/widgets/shipping_form.dart';
-import 'package:fstore/screens/checkout/widgets/shipping_method.dart';
-import 'package:fstore/screens/cart/my_cart_screen.dart';
-import 'package:fstore/widgets/product/product_variant.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import 'package:awesome_card/awesome_card.dart';
+
 import '../../common/config.dart';
 import '../../common/constants.dart';
 import '../../common/tools.dart';
@@ -28,26 +21,16 @@ import '../../models/index.dart'
         UserModel;
 import '../../services/index.dart';
 import '../../widgets/common/expansion_info.dart';
-import '../../widgets/product/cart_item.dart';
 import '../base_screen.dart';
+import '../cart/my_cart_screen.dart';
 import 'checkout_screen.dart';
-import 'dart:math' as math;
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flash/flash.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:inspireui/inspireui.dart' show AutoHideKeyboard, printLog;
-import 'package:provider/provider.dart';
-
-import '../../common/config.dart';
-import '../../common/constants.dart';
-import '../../common/tools.dart';
-import '../../generated/l10n.dart';
-import '../../menu/index.dart' show MainTabControlDelegate;
-import '../../models/index.dart' show AppModel, CartModel, Product, UserModel;
-import '../../services/index.dart';
-import '../../widgets/product/cart_item.dart';
-import '../../widgets/product/product_bottom_sheet.dart';
+import 'shippingInfoTile.dart';
+import 'widgets/checkout_button.dart';
+import 'widgets/my_credit_card.dart';
+import 'widgets/my_creditcard_address.dart';
+import 'widgets/payment_methods.dart';
+import 'widgets/shipping_form.dart';
+import 'widgets/shipping_method.dart';
 
 
 var paymentFormOpen = false;

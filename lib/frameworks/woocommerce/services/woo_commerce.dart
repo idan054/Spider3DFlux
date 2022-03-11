@@ -1,49 +1,24 @@
 // ignore_for_file: omit_local_variable_types
 
-import 'dart:async';
 import 'dart:convert' as convert;
 import 'dart:convert';
 import 'dart:core';
+
 import 'package:dio/dio.dart';
-import 'package:fstore/services/https.dart';
-import 'package:http/http.dart' as http;
-import 'package:flutter/foundation.dart' show compute;
-import 'package:quiver/strings.dart';
-import 'dart:math';
-import 'dart:math';
-import '../../../common/config.dart';
-import '../../../common/constants.dart';
-import '../../../common/tools.dart';
-import '../../../models/booking/staff_booking_model.dart';
-import '../../../models/entities/paging_response.dart';
-import '../../../models/entities/prediction.dart';
-import '../../../models/index.dart';
-import '../../../services/base_services.dart';
-import '../../../services/index.dart';
-import '../../../services/wordpress/blognews_api.dart';
-import '../../../services/wordpress/wordpress_api.dart';
-import 'woocommerce_api.dart';
-import 'dart:async';
-import 'dart:convert' as convert;
-import 'dart:convert';
-import 'dart:core';
-
 import 'package:flutter/foundation.dart' show compute;
 import 'package:quiver/strings.dart';
 
 import '../../../common/config.dart';
 import '../../../common/constants.dart';
-import '../../../common/tools.dart';
 import '../../../models/booking/staff_booking_model.dart';
-import '../../../models/entities/paging_response.dart';
 import '../../../models/entities/prediction.dart';
 import '../../../models/index.dart';
 import '../../../services/base_services.dart';
+import '../../../services/https.dart';
 import '../../../services/index.dart';
 import '../../../services/wordpress/blognews_api.dart';
 import '../../../services/wordpress/wordpress_api.dart';
 import 'woocommerce_api.dart';
-import 'dart:math';
 
 // Lasted WooCommerce Version
 class WooCommerce extends BaseServices {

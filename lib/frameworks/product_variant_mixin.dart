@@ -1,11 +1,16 @@
+
 import 'package:collection/collection.dart' show IterableExtension;
 import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart' as html;
-import 'package:fstore/screens/users/spider_point_screen.dart';
 import 'package:fstore/services/my_sendErrorEmail.dart';
 import 'package:provider/provider.dart';
 import 'package:share/share.dart';
+
+import '../../common/config.dart';
+import '../../common/constants.dart';
+import '../../generated/l10n.dart';
+import '../../widgets/common/webview.dart';
 import '../common/config.dart';
 import '../common/constants.dart';
 import '../generated/l10n.dart';
@@ -14,26 +19,6 @@ import '../models/index.dart'
 import '../screens/cart/cart_screen.dart';
 import '../widgets/common/webview.dart';
 import '../widgets/product/product_variant.dart';
-import 'package:flutter/cupertino.dart' show CupertinoIcons;
-import 'package:flutter/material.dart';
-import 'package:fstore/screens/users/spider_point_screen.dart';
-import 'package:inspireui/widgets/flux_image.dart';
-import 'package:localstorage/localstorage.dart';
-import 'package:provider/provider.dart';
-import 'package:rate_my_app/rate_my_app.dart';
-import '../../app.dart';
-import '../../common/config.dart';
-import '../../common/constants.dart';
-import '../../common/tools.dart';
-import '../../generated/l10n.dart';
-import '../../models/index.dart' show AppModel, User, UserModel, WishListModel;
-import '../../models/notification_model.dart';
-import '../../routes/flux_navigate.dart';
-import '../../services/index.dart';
-import '../../widgets/common/webview.dart';
-import 'dart:convert' as convert;
-import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 
 // Product_varinat_mixing.dart - fluxStore-spider3d
 

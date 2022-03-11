@@ -10,7 +10,6 @@ import 'package:provider/provider.dart';
 import '../common/config.dart';
 import '../common/constants.dart';
 import '../common/tools.dart';
-import '../common/tools/adaptive_tools.dart';
 import '../routes/flux_navigate.dart';
 import '../screens/products/products_screen.dart';
 import '../services/index.dart';

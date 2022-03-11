@@ -2,6 +2,10 @@ import 'package:country_pickers/country_pickers.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../common/config.dart';
+import '../../generated/l10n.dart';
+import '../../models/index.dart' show CartModel, Order;
+import '../../services/index.dart';
 import '../common/config.dart';
 import '../common/constants.dart';
 import '../common/tools.dart';
@@ -29,14 +33,6 @@ import '../services/index.dart';
 import '../widgets/common/webview.dart';
 import '../widgets/orders/tracking.dart';
 import '../widgets/product/product_card_view.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import '../../common/config.dart';
-import '../../generated/l10n.dart';
-import '../../models/index.dart' show CartModel, Order;
-import '../../services/index.dart';
-import '../../widgets/product/product_bottom_sheet.dart';
 
 abstract class BaseFrameworks {
   bool get enableProductReview;

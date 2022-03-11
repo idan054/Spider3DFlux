@@ -1,14 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:fstore/common/config.dart';
-import 'package:fstore/frameworks/woocommerce/services/woo_commerce.dart';
-import 'package:fstore/models/cart/cart_base.dart';
-import 'package:fstore/screens/checkout/webview_checkout_success_screen.dart';
 import 'package:provider/provider.dart';
-
 //import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+import '../../common/config.dart';
+import '../../models/cart/cart_base.dart';
 import '../../services/index.dart';
 import '../base_screen.dart';
 

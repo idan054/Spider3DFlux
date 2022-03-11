@@ -1,17 +1,7 @@
-import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:fstore/screens/checkout/widgets/my_credit_card.dart';
-import 'package:fstore/screens/checkout/widgets/payment_methods.dart';
-import 'package:fstore/screens/checkout/widgets/shipping_form.dart';
-import 'package:fstore/screens/checkout/widgets/shipping_method.dart';
-import 'package:fstore/widgets/product/product_variant.dart';
 import 'package:provider/provider.dart';
-import 'package:awesome_card/awesome_card.dart';
 
-import '../../common/config.dart';
-import '../../common/constants.dart';
-import '../../common/tools.dart';
 import '../../generated/l10n.dart';
 import '../../models/index.dart'
     show
@@ -23,12 +13,7 @@ import '../../models/index.dart'
         ShippingMethodModel,
         TaxModel,
         UserModel;
-import '../../services/index.dart';
-import '../../widgets/common/expansion_info.dart';
-import '../../widgets/product/cart_item.dart';
-import '../base_screen.dart';
-import 'checkout_screen.dart';
-import 'dart:math' as math;
+import 'widgets/shipping_form.dart';
 
 
 class ShippingInfoTile extends StatefulWidget {
