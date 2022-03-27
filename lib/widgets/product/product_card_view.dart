@@ -477,6 +477,7 @@ class ProductCard extends StatelessWidget {
     //   url: item.imageFeature.toString(),
     // ));
 
+
     /// Original:
     return GestureDetector(
       onTap: onTapProduct,
@@ -493,6 +494,7 @@ class ProductCard extends StatelessWidget {
   }
 
   void _onTapProduct(context) {
+    printLog("image is ${item.imageFeature}");
     if (item.imageFeature == '') return;
     Provider.of<RecentModel>(context, listen: false).addRecentProduct(item);
     //Load update product detail screen for FluxBuilder

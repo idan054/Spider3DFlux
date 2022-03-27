@@ -92,15 +92,15 @@ class DynamicLinkService {
     var firebaseDynamicLink = await generateFirebaseDynamicLink(productParams);
     http.Response response;
     try {
-      response = await http.post(Uri.https("api.rebrandly.com", "/v1/links"), headers: {"apikey" : "b4d30300ce9e4a609d7776e4a1df5f8f", 'Accept': 'application/json', 'Content-Type': 'application/json'}, body: jsonEncode({'domain': {'id' : 'c0f887ba9eb4461cab7d12b714f8644b'}, 'destination': '$productUrl', 'title' : '$productUrl'}));
+      response = await http.post(Uri.https("api.rebrandly.com", "/v1/links"), headers: {"apikey" : "b4d30300ce9e4a609d7776e4a1df5f8f", 'Accept': 'application/json', 'Content-Type': 'application/json'}, body: jsonEncode({'domain': {'id' : 'c0f887ba9eb4461cab7d12b714f8644b'}, 'destination': '$firebaseDynamicLink', 'title' : 'product: $productId'}));
       printLog(response.body);
       if(response.statusCode == 200){
         await Share.share(
-          (jsonDecode(response.body) as Map<String, dynamic>)['shortUrl'].toString(),
+          'https://' + (jsonDecode(response.body) as Map<String, dynamic>)['shortUrl'].toString(),
         );
       }
-    } on DioError catch(e) {
-      printLog(e.message);
+    } catch(e) {
+      printLog(e);
       await Share.share(
         firebaseDynamicLink.toString(),
       );

@@ -131,6 +131,7 @@ class ImageTools {
     // var ratioImage = kAdvanceConfig['RatioProductImage'] ?? 1.2;
     var ratioImage = 0.3;
 
+
     if (url?.isEmpty ?? true) {
       // print("image_tools: url $url use url?.isEmpty ?? true");
 
@@ -260,7 +261,8 @@ class ImageTools {
 
     final image = ExtendedImage.network(
       // final original_image = ExtendedImage.network(
-      isResize ? formatImage(url, size)! : url!,
+      // isResize ? formatImage(url, size)! : url!,
+      url!,
       width: width,
       height: height,
       fit: fit,

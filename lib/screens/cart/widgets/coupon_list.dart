@@ -84,7 +84,7 @@ class _CouponListState extends BaseScreen<CouponList> {
     // final searchQuery = _couponTextController.text.toLowerCase();
     final searchQuery = '${couponText}App'.toLowerCase(); // My
 
-    printLog("coupons list length is ${coupons.length}");
+    // printLog("coupons list length is ${coupons.length}");
 
     coupons.retainWhere((c) {
       var shouldKeep = true;
@@ -129,16 +129,15 @@ class _CouponListState extends BaseScreen<CouponList> {
         shouldKeep &= c.emailRestrictions.contains(email);
       }*/
 
-      printLog("$shouldKeep for ${c.code} | ${c.description} ${c.dateExpires}");
       return shouldKeep;
     });
 
-    print("RETAINED COUPONS: ${coupons.map((c) => c.code).toList()}");
-    printLog("retained coupons list length is ${coupons.length}");
+    // print("RETAINED COUPONS: ${coupons.map((c) => c.code).toList()}");
+    // printLog("retained coupons list length is ${coupons.length}");
 
-    if (coupons.isEmpty) {
-      invalidCoupon(context);
-    }
+    // if (coupons.isEmpty) {
+    //   invalidCoupon(context);
+    // }
 
     // _coupons.sort((a, b) => b.emailRestrictions.contains(email) ? 0 : -1);
 
@@ -175,15 +174,14 @@ class _CouponListState extends BaseScreen<CouponList> {
           margin: const EdgeInsets.only(left: 10.0),
           child: TextField(
             onChanged: (s) async {
-              printLog("got vlaue of coupon changed $s");
+              // printLog("got vlaue of coupon changed $s");
               couponText = s;
               await myCouponRefresher(context);
             },
-            onEditingComplete: (){},
             // controller: _couponTextController,
             onSubmitted: (_) async {
-              printLog("submitting value ${couponText} ${coupons.length}");
-              await myCouponRefresher(context);
+              // printLog("submitting value ${couponText} ${coupons.length}");
+              await myCouponRefresher(context, onSubmit: true);
 
             },
             textInputAction: TextInputAction.search,
@@ -263,18 +261,17 @@ class _CouponListState extends BaseScreen<CouponList> {
     );
   }
 
-  Future<void> myCouponRefresher(context) async {
+  Future<void> myCouponRefresher(context, {bool onSubmit = false}) async {
     setState(() {
       isFetching = true;
     });
-    printLog("coupon value ${couponText}");
+    // printLog("coupon value ${couponText}");
     final count = _couponsMap.length;
     // currentPage++;
     await services.api.getCoupons()!.then((Coupons coupons) {
       coupons.coupons.forEach((Coupon coupon) {
         _couponsMap[coupon.id] = coupon;
       });
-      printLog("got coupons $_couponsMap");
       final newCount = _couponsMap.length;
       if (newCount == count) {
         refreshController.loadNoData();
@@ -286,6 +283,9 @@ class _CouponListState extends BaseScreen<CouponList> {
     setState(() {
       isFetching = false;
     });
+    if (coupons.isEmpty && onSubmit) {
+      invalidCoupon(context);
+    }
   }
 
   invalidCoupon(context) async {

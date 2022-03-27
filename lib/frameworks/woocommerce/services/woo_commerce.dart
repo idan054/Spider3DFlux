@@ -1233,7 +1233,7 @@ class WooCommerce extends BaseServices {
     try {
       // var response = await wcApi.getAsync('coupons?page=$page');
       var response = await wcApi.getAsync('coupons?page=1&per_page=100');
-      printLog(response.toString());
+      // printLog(response.toString());
       return Coupons.getListCoupons(response);
     } catch (e) {
       //This error exception is about your Rest API is not config correctly so that not return the correct JSON format, please double check the document from this link https://docs.inspireui.com/fluxstore/woocommerce-setup/
@@ -1342,8 +1342,8 @@ class WooCommerce extends BaseServices {
       }
       return null;
     } catch (e, trace) {
-      printLog(trace);
-      printLog(e);
+      // printLog(trace);
+      // printLog(e);
       //This error exception is about your Rest API is not config correctly so that not return the correct JSON format, please double check the document from this link https://docs.inspireui.com/fluxstore/woocommerce-setup/
       return null;
     }
@@ -1426,7 +1426,7 @@ class WooCommerce extends BaseServices {
 
       return categoryCache;
     } catch (e, trace) {
-      printLog(trace.toString());
+      // printLog(trace.toString());
       //This error exception is about your Rest API is not config correctly so that not return the correct JSON format, please double check the document from this link https://docs.inspireui.com/fluxstore/woocommerce-setup/
       rethrow;
     }
@@ -1465,24 +1465,23 @@ class WooCommerce extends BaseServices {
           headers: {'Authorization': '$myApiAuth','Content-Type': 'application/json'});
       var body = convert.jsonDecode(response.body);
       if (response.statusCode == 200 && body is String) {
-        print("flutter_user/checkout Body req:");
-        print(convert.jsonEncode({
-          'order': base64Str,
-        }));
-        print("flutter_user/checkout Body resp:");
-        print(body);
+        // print("flutter_user/checkout Body req:");
+        // print(convert.jsonEncode({
+        //   'order': base64Str,
+        // }));
+        // print("flutter_user/checkout Body resp:");
+        // print(body);
         if (kPaymentConfig['EnableOnePageCheckout'] ||
             kPaymentConfig['NativeOnePageCheckout'] ||
             kPaymentConfig['GuestCheckout'] == true ||
             params['token'] == null) {
-          print("flutter_user/checkout Native / OnePage is enabled");
+          // print("flutter_user/checkout Native / OnePage is enabled");
           Map<String, dynamic> checkoutPageSlug =
           kPaymentConfig['CheckoutPageSlug'];
           String? slug = checkoutPageSlug[lang!];
           slug ??= checkoutPageSlug.values.toList().first;
           slug = slug!.contains('?') ? slug + '&' : slug + '?';
-          printLog(
-              '$url/${slug}code=$body&mobile=true'); // I/flutter (20674): ℹ️[6:00:43-043ms]https://spider3d.co.il/checkout?code=d731aabe6316c96fc424959ed7d733cd&mobile=true
+          // printLog('$url/${slug}code=$body&mobile=true'); // I/flutter (20674): ℹ️[6:00:43-043ms]https://spider3d.co.il/checkout?code=d731aabe6316c96fc424959ed7d733cd&mobile=true
           return '$url/${slug}code=$body&mobile=true';
         } else {
           return '$url/mstore-checkout?code=$body&mobile=true';
