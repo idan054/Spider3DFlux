@@ -34,7 +34,7 @@ Map<String, dynamic> environment = {
     "EnablePointReward": false,
     "hideOutOfStock":
         false, //// Do not change to True, HardCoded hideOutOfStock // But those items might still show (Need to fix)
-    "EnableRating": false,
+    "EnableRating": true,
     "hideEmptyProductListRating": true,
     "EnableShipping": true,
     "EnableSkuSearch": false,

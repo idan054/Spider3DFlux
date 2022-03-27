@@ -179,26 +179,27 @@ class _SimpleLayoutState extends State<SimpleLayout>
                             color: kGrey400,
                           ),
                         Padding(
-                          padding: const EdgeInsets.all(12),
+                          padding: const EdgeInsets.all(8),
                           child: CircleAvatar(
                             backgroundColor:
                                 Colors.grey[100]!.withOpacity(0.75),
-                            child: IconButton(
-                              icon: const Directionality(
-                                  textDirection: TextDirection.rtl,
-                                  child:  Icon(Icons.reply, size: 19)),
-                              // color: kGrey400,
-                              color: kColorSpiderRed, // Theme.of(context).accentColor.withOpacity(0.75),
-                              onPressed: () =>
-                              // open menu
-                              //     ProductDetailScreen.showMenu(
-                              //     context, widget.product,
-                              //     isLoading: widget.isLoading),
-                              Services().firebase.shareDynamicLinkProduct(
-                                context: context,
-                                productUrl: product.permalink,
-                                productId: product.id,
-                              )
+                            child: Directionality(
+                              textDirection: TextDirection.rtl,
+                              child: IconButton(
+                                icon: Icon(Icons.reply),
+                                // color: kGrey400,
+                                color: kColorSpiderRed, // Theme.of(context).accentColor.withOpacity(0.75),
+                                onPressed: () =>
+                                // open menu
+                                //     ProductDetailScreen.showMenu(
+                                //     context, widget.product,
+                                //     isLoading: widget.isLoading),
+                                Services().firebase.shareDynamicLinkProduct(
+                                  context: context,
+                                  productUrl: product.permalink,
+                                  productId: product.id,
+                                )
+                              ),
                             ),
                           ),
                         ),

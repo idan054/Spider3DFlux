@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:inspireui/utils.dart' show printLog;
@@ -6,6 +9,7 @@ import 'package:share/share.dart';
 import '../../common/config.dart';
 import '../../common/constants.dart' show RouteList, printLog;
 import '../../services/index.dart';
+import 'package:http/http.dart' as http;
 
 class DynamicLinkService {
   DynamicLinkParameters productParameters({
@@ -86,8 +90,20 @@ class DynamicLinkService {
         productId: productId
     );
     var firebaseDynamicLink = await generateFirebaseDynamicLink(productParams);
-    await Share.share(
-      firebaseDynamicLink.toString(),
-    );
+    http.Response response;
+    try {
+      response = await http.post(Uri.https("api.rebrandly.com", "/v1/links"), headers: {"apikey" : "b4d30300ce9e4a609d7776e4a1df5f8f", 'Accept': 'application/json', 'Content-Type': 'application/json'}, body: jsonEncode({'domain': {'id' : 'c0f887ba9eb4461cab7d12b714f8644b'}, 'destination': '$productUrl', 'title' : '$productUrl'}));
+      printLog(response.body);
+      if(response.statusCode == 200){
+        await Share.share(
+          (jsonDecode(response.body) as Map<String, dynamic>)['shortUrl'].toString(),
+        );
+      }
+    } on DioError catch(e) {
+      printLog(e.message);
+      await Share.share(
+        firebaseDynamicLink.toString(),
+      );
+    }
   }
 }

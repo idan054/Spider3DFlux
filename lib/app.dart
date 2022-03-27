@@ -141,19 +141,18 @@ class AppState extends State<App>
       log('update details'
           '\n${info.updateAvailability},'
           '\n${info.availableVersionCode},'
-          // '\n${info.packageName},'
-          // '\n${info.flexibleUpdateAllowed},'
-          // '\n${info.immediateUpdateAllowed}'
+          '\n${info.packageName},'
+          '\n${info.flexibleUpdateAllowed},'
+          '\n${info.immediateUpdateAllowed}'
           '\n${info.updatePriority},'
           '\n${info.toString()},'
           );
       if(_updateInfo!=null){
         if(_updateInfo!.updateAvailability == 2) {
-          if (_updateInfo!.flexibleUpdateAllowed) {
-            InAppUpdate.startFlexibleUpdate();
-          } else if (_updateInfo!.immediateUpdateAllowed) {
+          if (_updateInfo!.immediateUpdateAllowed) {
             InAppUpdate.performImmediateUpdate();
           }
+          InAppUpdate.startFlexibleUpdate();
         }
       }
     }).catchError((e) {
@@ -308,12 +307,17 @@ class AppState extends State<App>
                   SubCupertinoLocalizations.delegate,
                 ],
                 supportedLocales: S.delegate.supportedLocales,
+              //   home: UpgradeAlert(
+              //   dialogStyle: UpgradeDialogStyle.cupertino,
+              //   countryCode: 'IL',
+              //   debugLogging: true,
+              //   child: const Scaffold(body: AppInit()),
+              // ),
                 home: UpgradeAlert(
-                dialogStyle: UpgradeDialogStyle.cupertino,
-                countryCode: 'IL',
-                debugLogging: true,
-                child: const Scaffold(body: AppInit()),
-              ),
+                  dialogStyle: UpgradeDialogStyle.cupertino,
+                  countryCode: 'IL',
+                  child: const Scaffold(body: AppInit()),
+                ),
                 // home: const CheckoutScreenV3(),
                 routes: Routes.getAll(),
                 debugShowCheckedModeBanner: false,

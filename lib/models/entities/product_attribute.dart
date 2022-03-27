@@ -11,7 +11,7 @@ class ProductAttribute {
   String? get cleanSlug => slug?.replaceAll('pa_', '');
 
   ProductAttribute.fromJson(Map<String, dynamic> parsedJson) {
-    print('product_attribute.dart - fromJson() - parsedJson $parsedJson');
+    // print('product_attribute.dart - fromJson() - parsedJson $parsedJson');
 
     id = parsedJson['id'].toString();
     name =
@@ -54,7 +54,7 @@ class ProductAttribute {
       name = json['name'];
       options = json['options'];
     } catch (e) {
-      printLog(e.toString());
+      // printLog(e.toString());
     }
   }
 
@@ -75,7 +75,7 @@ class ProductAttribute {
         }
       }
     } catch (e) {
-      printLog(e.toString());
+      // printLog(e.toString());
     }
   }
 
@@ -85,7 +85,7 @@ class ProductAttribute {
       name = att['name'];
       options = att['options'];
     } catch (e) {
-      printLog(e.toString());
+      // printLog(e.toString());
     }
   }
 }

@@ -341,11 +341,16 @@ class _OrderHistoryDetailScreenState
                                             ),
                                           ),
                                         ),
-                                        Text(
-                                          formatTime(DateTime.parse(
-                                              listOrderNote[index]
-                                                  .dateCreated!)),
-                                          style: const TextStyle(fontSize: 13),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.end,
+                                          children: [
+                                            Text(
+                                              formatTime(DateTime.parse(
+                                                  listOrderNote[index]
+                                                      .dateCreated!)),
+                                              style: const TextStyle(fontSize: 13),
+                                            )
+                                          ],
                                         )
                                       ],
                                     ),

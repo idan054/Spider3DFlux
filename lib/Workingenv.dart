@@ -23,7 +23,7 @@ Map<String, dynamic> environment = {
     "DetailedBlogLayout": "halfSizeImageType",
     "EnablePointReward": true,
     "hideOutOfStock": false,
-    "EnableRating": false,
+    "EnableRating": true,
     "hideEmptyProductListRating": true,
     "EnableShipping": true,
     "EnableSkuSearch": true,

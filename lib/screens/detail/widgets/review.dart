@@ -17,10 +17,10 @@ class Reviews extends StatefulWidget {
   final bool showYourRatingOnly;
 
   Reviews(
-    this.productId, {
-    this.allowRating = true,
-    this.showYourRatingOnly = false,
-  });
+      this.productId, {
+        this.allowRating = true,
+        this.showYourRatingOnly = false,
+      });
 
   @override
   _StateReviews createState() => _StateReviews(productId);
@@ -37,7 +37,7 @@ class _StateReviews extends BaseScreen<Reviews> {
 
   @override
   void afterFirstLayout(BuildContext context) {
-    getListReviews(context);
+    // getListReviews(context);
   }
 
   @override
@@ -61,27 +61,28 @@ class _StateReviews extends BaseScreen<Reviews> {
       Tools.showSnackBar(Scaffold.of(context), S.of(context).commentFirst);
       return;
     }
+    printLog(productId);
     final user = Provider.of<UserModel>(context, listen: false);
     services.api
         .createReview(
-            productId: productId,
-            data: {
-              'review': comment.text,
-              'reviewer': user.user!.name,
-              'reviewer_email': user.user!.email,
-              'rating': rating,
-              'status': (kAdvanceConfig['EnableApprovedReview'] ?? false)
-                  ? 'approved'
-                  : 'hold'
-            },
-            token: user.user!.cookie)!
+        productId: productId,
+        data: {
+          'review': comment.value.text,
+          'reviewer': user.user!.name,
+          'reviewer_email': user.user!.email,
+          'rating': rating,
+          'status': (kAdvanceConfig['EnableApprovedReview'] ?? false)
+              ? 'approved'
+              : 'hold'
+        },
+        token: user.user!.cookie)!
         .then((onValue) {
       Tools.showSnackBar(
           Scaffold.of(context),
           (kAdvanceConfig['EnableApprovedReview'] ?? false)
               ? S.of(context).reviewPendingApproval
               : S.of(context).reviewSent);
-      getListReviews(context);
+      // getListReviews(context);
       setState(() {
         rating = 0.0;
         comment.text = '';
@@ -89,20 +90,20 @@ class _StateReviews extends BaseScreen<Reviews> {
     });
   }
 
-  void getListReviews(BuildContext context) {
-    final userModel = Provider.of<UserModel>(context, listen: false);
-    services.api.getReviews(productId)!.then((onValue) {
-      final _reviewList = onValue;
-
-      if (userModel.loggedIn && widget.showYourRatingOnly) {
-        final userEmail = userModel.user!.email;
-        _reviewList.retainWhere((element) => element.email == userEmail);
-      }
-      setState(() {
-        reviews = _reviewList;
-      });
-    });
-  }
+  // void getListReviews(BuildContext context) {
+  //   final userModel = Provider.of<UserModel>(context, listen: false);
+  //   services.api.getReviews(productId)!.then((onValue) {
+  //     final _reviewList = onValue;
+  //
+  //     if (userModel.loggedIn && widget.showYourRatingOnly) {
+  //       final userEmail = userModel.user!.email;
+  //       _reviewList.retainWhere((element) => element.email == userEmail);
+  //     }
+  //     setState(() {
+  //       reviews = _reviewList;
+  //     });
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -112,23 +113,23 @@ class _StateReviews extends BaseScreen<Reviews> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        reviews == null
-            ? Container(height: 80, child: kLoadingWidget(context))
-            : (reviews!.isEmpty
-                ? (widget.showYourRatingOnly
-                    ? const SizedBox()
-                    : Container(
-                        height: 80,
-                        child: Center(
-                          child: Text(S.of(context).noReviews),
-                        ),
-                      ))
-                : Column(
-                    children: <Widget>[
-                      for (var i = 0; i < reviews!.length; i++)
-                        renderItem(context, reviews![i])
-                    ],
-                  )),
+        // reviews == null
+        //     ? Container(height: 80, child: kLoadingWidget(context))
+        //     : (reviews!.isEmpty
+        //         ? (widget.showYourRatingOnly
+        //             ? const SizedBox()
+        //             : Container(
+        //                 height: 80,
+        //                 child: Center(
+        //                   child: Text(S.of(context).noReviews),
+        //                 ),
+        //               ))
+        //         : Column(
+        //             children: <Widget>[
+        //               for (var i = 0; i < reviews!.length; i++)
+        //                 renderItem(context, reviews![i])
+        //             ],
+        //           )),
         const SizedBox(height: 20),
         if (isRatingAllowed)
           Row(
@@ -147,7 +148,7 @@ class _StateReviews extends BaseScreen<Reviews> {
                     alignment: Alignment.bottomRight,
                     child: SmoothStarRating(
                       label: const Text(''),
-                      allowHalfRating: true,
+                      allowHalfRating: false,
                       onRatingChanged: updateRating,
                       starCount: 5,
                       rating: rating,
@@ -177,7 +178,7 @@ class _StateReviews extends BaseScreen<Reviews> {
                     maxLines: 3,
                     minLines: 1,
                     decoration:
-                        InputDecoration(labelText: S.of(context).writeComment),
+                    InputDecoration(labelText: S.of(context).writeComment),
                   ),
                 ),
                 GestureDetector(
@@ -219,7 +220,7 @@ class _StateReviews extends BaseScreen<Reviews> {
                           fontSize: 12, fontWeight: FontWeight.bold)),
                   SmoothStarRating(
                       label: const Text(''),
-                      allowHalfRating: true,
+                      allowHalfRating: false,
                       starCount: 5,
                       rating: review.rating,
                       size: 12.0,

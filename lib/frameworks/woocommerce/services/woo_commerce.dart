@@ -4,6 +4,7 @@ import 'dart:async';
 import 'dart:convert' as convert;
 import 'dart:convert';
 import 'dart:core';
+import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:fstore/services/https.dart';
@@ -577,7 +578,7 @@ class WooCommerce extends BaseServices {
       var response = await httpPost(endPoint.toUri()!,
           body: convert.jsonEncode({'token': token}),
           headers: {'Authorization': '$myApiAuth',
-        'Content-Type': 'application/json'});
+            'Content-Type': 'application/json'});
 
       var jsonDecode = convert.jsonDecode(response.body);
 
@@ -599,8 +600,11 @@ class WooCommerce extends BaseServices {
       await wcApi.getAsync('products/$productId/reviews', version: 2);
       var list = <Review>[];
       if (response is Map && isNotBlank(response['message'])) {
+        printLog("error in get reviews ${response}" );
         throw Exception(response['message']);
       } else {
+        printLog("review received ${response}" );
+
         for (var item in response) {
           list.add(Review.fromJson(item));
         }
@@ -615,22 +619,40 @@ class WooCommerce extends BaseServices {
   @override
   Future<Null> createReview(
       {String? productId, Map<String, dynamic>? data, String? token}) async {
+
     try {
-      data!['product_id'] = productId;
-      final response = await httpPost(
-          '$url/wp-json/api/flutter_woo/products/reviews'.toUri()!,
-          body: convert.jsonEncode(data),
-          headers: {'Authorization': '$myApiAuth','User-Cookie': token!, 'Content-Type': 'application/json'});
-      var body = convert.jsonDecode(response.body);
-      if (body['message'] == null) {
-        return;
+      data!["product_id"] = productId;
+      var response =
+      await wcApi.postAsync('products/reviews', data, version: 3);
+      if (response is Map && isNotBlank(response['message'])) {
+        printLog("error in creating review ${response}");
+        throw Exception(response['message']);
       } else {
-        throw Exception(body['message']);
+        printLog("review created ${response}");
+        return;
       }
     } catch (e) {
       //This error exception is about your Rest API is not config correctly so that not return the correct JSON format, please double check the document from this link https://docs.inspireui.com/fluxstore/woocommerce-setup/
       rethrow;
     }
+    //
+    // try {
+    //   data!['product_id'] = productId;
+    //   final response = await httpPost(
+    //       '$url/wp-json/api/flutter_woo/products/reviews'.toUri()!,
+    //       body: convert.jsonEncode(data),
+    //       headers: {'Authorization': '$myApiAuth','User-Cookie': token!, 'Content-Type': 'application/json'});
+    //   var body = convert.jsonDecode(response.body);
+    //   if (body['message'] == null) {
+    //     return;
+    //   } else {
+    //     printLog("Error thrown for creating review ${response.body}");
+    //     throw Exception(body['message']);
+    //   }
+    // } catch (e) {
+    //   //This error exception is about your Rest API is not config correctly so that not return the correct JSON format, please double check the document from this link https://docs.inspireui.com/fluxstore/woocommerce-setup/
+    //   rethrow;
+    // }
   }
 
   @override
@@ -874,17 +896,18 @@ class WooCommerce extends BaseServices {
       {String? userId, String? orderId}) async {
     try {
       var response = await wcApi
-          .getAsync('orders/$orderId/notes?customer=$userId&per_page=100');
+          .getAsync('orders/$orderId/notes?type=customer');
       var list = <OrderNote>[];
       if (response is Map && isNotBlank(response['message'])) {
         throw Exception(response['message']);
       } else {
         for (var item in response) {
-//          if (item.type == 'any') {
-          /// it is possible to update to `any` note
-          /// ref: https://woocommerce.github.io/woocommerce-rest-api-docs/#list-all-order-notes
-          list.add(OrderNote.fromJson(item));
-//          }
+          printLog(item.toString());
+          if (item is Map && (item as Map<String, dynamic>).containsKey("customer_note") && item['customer_note'] == true) {
+            /// it is possible to update to `any` note
+            /// ref: https://woocommerce.github.io/woocommerce-rest-api-docs/#list-all-order-notes
+            list.add(OrderNote.fromJson(item));
+          }
         }
         return list;
       }
@@ -896,7 +919,7 @@ class WooCommerce extends BaseServices {
 
   @override
   Future<Order> createOrder( // # 1
-      {CartModel? cartModel,
+          {CartModel? cartModel,
         UserModel? user,
         bool? paid,
         String? transactionId}) async {
@@ -1208,8 +1231,9 @@ class WooCommerce extends BaseServices {
   @override
   Future<Coupons> getCoupons({int page = 1}) async {
     try {
-      var response = await wcApi.getAsync('coupons?page=$page');
-      //printLog(response.toString());
+      // var response = await wcApi.getAsync('coupons?page=$page');
+      var response = await wcApi.getAsync('coupons?page=1&per_page=100');
+      printLog(response.toString());
       return Coupons.getListCoupons(response);
     } catch (e) {
       //This error exception is about your Rest API is not config correctly so that not return the correct JSON format, please double check the document from this link https://docs.inspireui.com/fluxstore/woocommerce-setup/

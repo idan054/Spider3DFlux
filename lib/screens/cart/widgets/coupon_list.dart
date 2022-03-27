@@ -35,23 +35,24 @@ class CouponList extends StatefulWidget {
 
 class _CouponListState extends BaseScreen<CouponList> {
   final services = Services();
-  final TextEditingController _couponTextController = TextEditingController();
+  // final TextEditingController _couponTextController = TextEditingController();
+  String couponText = "";
 
   final Map<String?, Coupon> _couponsMap = {};
 
   List<Coupon> coupons = [];
   String? email;
   bool isFetching = false;
-  int currentPage = 1;
+  // int currentPage = 1;
 
   RefreshController refreshController =
-  RefreshController(initialRefresh: false);
+      RefreshController(initialRefresh: false);
 
   @override
   Future<void> afterFirstLayout(BuildContext context) async {
     if (widget.couponCode != null) {
       setState(() {
-        _couponTextController.text = widget.couponCode!;
+        couponText = widget.couponCode!;
       });
     }
 
@@ -80,9 +81,10 @@ class _CouponListState extends BaseScreen<CouponList> {
     final bool showExpiredCoupons =
         kAdvanceConfig['ShowExpiredCoupons'] ?? false;
 
-
     // final searchQuery = _couponTextController.text.toLowerCase();
-    final searchQuery = '${_couponTextController.text}App'.toLowerCase(); // My
+    final searchQuery = '${couponText}App'.toLowerCase(); // My
+
+    printLog("coupons list length is ${coupons.length}");
 
     coupons.retainWhere((c) {
       var shouldKeep = true;
@@ -127,10 +129,16 @@ class _CouponListState extends BaseScreen<CouponList> {
         shouldKeep &= c.emailRestrictions.contains(email);
       }*/
 
+      printLog("$shouldKeep for ${c.code} | ${c.description} ${c.dateExpires}");
       return shouldKeep;
     });
 
     print("RETAINED COUPONS: ${coupons.map((c) => c.code).toList()}");
+    printLog("retained coupons list length is ${coupons.length}");
+
+    if (coupons.isEmpty) {
+      invalidCoupon(context);
+    }
 
     // _coupons.sort((a, b) => b.emailRestrictions.contains(email) ? 0 : -1);
 
@@ -163,31 +171,22 @@ class _CouponListState extends BaseScreen<CouponList> {
             color: Theme.of(context).primaryColorLight,
             borderRadius: BorderRadius.circular(20),
           ),
-          padding: const EdgeInsets.only(right: 24),
-          margin: const EdgeInsets.only(left: 24.0),
+          padding: const EdgeInsets.only(right: 24, left: 24.0),
+          margin: const EdgeInsets.only(left: 10.0),
           child: TextField(
-            onChanged: (_) async {
-              await myCouponRefresher();
+            onChanged: (s) async {
+              printLog("got vlaue of coupon changed $s");
+              couponText = s;
+              await myCouponRefresher(context);
             },
-            controller: _couponTextController,
-            onSubmitted: (_) {
-              if (coupons.isEmpty) {
-                showCupertinoDialog(
-                  context: context,
-                  builder: (ctx) => CupertinoAlertDialog(
-                    title: const Text('שים לב'),
-                    content: Text(S.of(context).couponInvalid),
-                    actions: [
-                      CupertinoDialogAction(
-                        isDefaultAction: true,
-                        onPressed: () => Navigator.of(ctx).pop(),
-                        child: const Text('OK'),
-                      )
-                    ],
-                  ),
-                );
-              }
+            onEditingComplete: (){},
+            // controller: _couponTextController,
+            onSubmitted: (_) async {
+              printLog("submitting value ${couponText} ${coupons.length}");
+              await myCouponRefresher(context);
+
             },
+            textInputAction: TextInputAction.search,
             decoration: InputDecoration(
               fillColor: Theme.of(context).accentColor,
               border: InputBorder.none,
@@ -195,7 +194,7 @@ class _CouponListState extends BaseScreen<CouponList> {
               focusColor: Theme.of(context).accentColor,
               suffixIcon: IconButton(
                 onPressed: () async {
-                  _couponTextController.clear();
+                  couponText = "";
                   await _displayCoupons(context);
                 },
                 icon: Icon(
@@ -213,66 +212,69 @@ class _CouponListState extends BaseScreen<CouponList> {
           Expanded(
             child: Container(
               color:
-              isDarkTheme ? theme.backgroundColor : theme.primaryColorLight,
+                  isDarkTheme ? theme.backgroundColor : theme.primaryColorLight,
               child: (isFetching && coupons.isEmpty)
                   ? kLoadingWidget(context)
                   : SmartRefresher(
-                enablePullDown: false,
-                enablePullUp: true,
-                footer: kCustomFooter(context),
-                onLoading: () async {
-                  await myCouponRefresher();
-                },
-                controller: refreshController,
-                child: ListView.builder(
-                  itemCount: coupons.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    final coupon = coupons[index];
-                    if (coupon.code == null) {
-                      return const SizedBox();
-                    }
-                    // if (coupons.isEmpty) {
-                    //   return const SizedBox();
-                    // }
-                    return Container(
-                      margin: const EdgeInsets.symmetric(
-                        horizontal: 24.0,
-                        vertical: 8.0,
-                      ),
-                      child: CouponItem(
-                        translate: CouponTrans(context),
-                        getCurrencyFormatted: (data) {
-                          return PriceTools.getCurrencyFormatted(
-                            data,
-                            model.currencyRate,
-                            currency: model.currency,
-                          )!;
+                      enablePullDown: false,
+                      enablePullUp: true,
+                      footer: kCustomFooter(context),
+                      onLoading: () async {
+                        await myCouponRefresher(context);
+                      },
+                      controller: refreshController,
+                      child: ListView.builder(
+                        itemCount: coupons.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          final coupon = coupons[index];
+                          if (coupon.code == null) {
+                            return const SizedBox();
+                          }
+                          // if (coupons.isEmpty) {
+                          //   return const SizedBox();
+                          // }
+                          return Container(
+                            margin: const EdgeInsets.symmetric(
+                              horizontal: 24.0,
+                              vertical: 8.0,
+                            ),
+                            child: CouponItem(
+                              translate: CouponTrans(context),
+                              getCurrencyFormatted: (data) {
+                                return PriceTools.getCurrencyFormatted(
+                                  data,
+                                  model.currencyRate,
+                                  currency: model.currency,
+                                )!;
+                              },
+                              coupon: coupon,
+                              onSelect: widget.onSelect,
+                              email: email,
+                              isFromCart: widget.isFromCart,
+                            ),
+                          );
                         },
-                        coupon: coupon,
-                        onSelect: widget.onSelect,
-                        email: email,
-                        isFromCart: widget.isFromCart,
                       ),
-                    );
-                  },
-                ),
-              ),
+                    ),
             ),
           ),
         ],
       ),
     );
   }
-  Future<void> myCouponRefresher() async {
-    setState(() { isFetching = true; });
+
+  Future<void> myCouponRefresher(context) async {
+    setState(() {
+      isFetching = true;
+    });
+    printLog("coupon value ${couponText}");
     final count = _couponsMap.length;
-    currentPage++;
-    await services.api
-        .getCoupons(page: currentPage)!
-        .then((Coupons coupons) {
+    // currentPage++;
+    await services.api.getCoupons()!.then((Coupons coupons) {
       coupons.coupons.forEach((Coupon coupon) {
         _couponsMap[coupon.id] = coupon;
       });
+      printLog("got coupons $_couponsMap");
       final newCount = _couponsMap.length;
       if (newCount == count) {
         refreshController.loadNoData();
@@ -281,6 +283,25 @@ class _CouponListState extends BaseScreen<CouponList> {
       }
       _displayCoupons(context);
     });
-    setState(() { isFetching = false; });
+    setState(() {
+      isFetching = false;
+    });
+  }
+
+  invalidCoupon(context) async {
+    await showCupertinoDialog(
+      context: context,
+      builder: (ctx) => CupertinoAlertDialog(
+        title: const Text('שים לב'),
+        content: Text(S.of(context).couponInvalid),
+        actions: [
+          CupertinoDialogAction(
+            isDefaultAction: true,
+            onPressed: () => Navigator.of(ctx).pop(),
+            child: const Text('OK'),
+          )
+        ],
+      ),
+    );
   }
 }
