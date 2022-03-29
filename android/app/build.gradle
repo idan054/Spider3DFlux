@@ -28,12 +28,12 @@ if (flutterRoot == null) {
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
-    flutterVersionCode = '38005'
+    flutterVersionCode = '36000'
 }
 
 def flutterVersionName = localProperties.getProperty('flutter.versionName')
 if (flutterVersionName == null) {
-    flutterVersionName = '38.00.5 - Fixes and improvements'
+    flutterVersionName = '37.04.0 - fix variations bugs'
 }
 
 apply plugin: 'com.android.application'
@@ -99,9 +99,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }*/
 
-//        debug {
-//            signingConfig signingConfigs.debug
-//        }
+        debug {
+            signingConfig signingConfigs.debug
+        }
     }
 }
 
