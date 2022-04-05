@@ -19,7 +19,23 @@
    "design": "default",
    "showBackGround": true,
    "radius": 8,
-   "items": []
+   "items": [
+    {
+     "אניקיוביק": "5707",
+     "image": "https://www.spider3d.co.il/wp-content/uploads/2022/04/Anycubic-129.jpg",
+     "padding": 15.0
+    },
+    {
+     "הורנט": "25056",
+     "image": "https://www.spider3d.co.il/wp-content/uploads/2022/04/hornet-980-scaled.jpg",
+     "padding": 15.0
+    },
+    {
+     "סילק": "5655",
+     "image": "https://www.spider3d.co.il/wp-content/uploads/2022/04/סילק-scaled.jpg",
+     "padding": 15.0
+    }
+   ]
   },
   {
    "layout": "category",
