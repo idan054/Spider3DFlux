@@ -21,18 +21,18 @@
    "radius": 8,
    "items": [
     {
-     "סילק": "5655",
-     "image": "https://www.spider3d.co.il/wp-content/uploads/2022/04/סילק-scaled.jpg",
+     "category": "5707",
+     "image": "https://www.spider3d.co.il/wp-content/uploads/2022/04/Anycubic-129.jpg",
      "padding": 15.0
     },
     {
-     "hornet": "25056",
+     "product": "25056",
      "image": "https://www.spider3d.co.il/wp-content/uploads/2022/04/hornet-980-scaled.jpg",
      "padding": 15.0
     },
     {
-     "אניקיוביק": "5707",
-     "image": "https://www.spider3d.co.il/wp-content/uploads/2022/04/Anycubic-129.jpg",
+     "category": "5655",
+     "image": "https://www.spider3d.co.il/wp-content/uploads/2022/04/%D7%A1%D7%99%D7%9C%D7%A7-scaled.jpg",
      "padding": 15.0
     }
    ]
