@@ -183,12 +183,14 @@ class ImageTools {
                 height: height,
                 decoration: BoxDecoration(color: Colors.black12.withOpacity(1)),
                 child: ExtendedImage.network(
+                // child: Image.network(
                   isResize ? formatImage(url, size)! : url!,
                   width: width,
                   // height: height ?? width! * ratioImage,
                   height: height ?? width! * 0.3,
                   fit: BoxFit.cover,
-                  cache: true,
+                  cache: true, // original is true
+                  // cache: false, // original is true
                   enableLoadState: false,
                   alignment: Alignment(
                       (offset >= -1 && offset <= 1)
@@ -308,9 +310,9 @@ class ImageTools {
       },
     );
 
-    if (forceWhiteBackground && url!.toLowerCase().endsWith('.png') ||
-        forceWhiteBackground && url!.toLowerCase().endsWith('.jpeg') ||
-        forceWhiteBackground && url!.toLowerCase().endsWith('.jpg')) {
+    if (forceWhiteBackground && url.toLowerCase().endsWith('.png') ||
+        forceWhiteBackground && url.toLowerCase().endsWith('.jpeg') ||
+        forceWhiteBackground && url.toLowerCase().endsWith('.jpg')) {
       // print("image_tools: $url use url!.toLowerCase()");
 
       return Container(

@@ -64,6 +64,14 @@ class _HomeLayoutState extends State<HomeLayout> {
       }
     }
 
+
+      // below is my
+      print('A data');
+      // appConfig = await
+      // Provider.of<AppModel>(context, listen: false).loadAppConfig()
+      //     .then((data) => print('B data ${data?.toJson()}'));
+      print('C data');
+
     super.initState();
   }
 
@@ -202,8 +210,8 @@ class _HomeLayoutState extends State<HomeLayout> {
               return PreviewOverlay(
                 index: previewIndex,
                 config: config,
-                builder: (value) {
-                  return DynamicLayout(value);
+                builder: (_config) {
+                  return DynamicLayout(_config);
                 },
               );
             },

@@ -3,12 +3,25 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
+import 'package:fstore/models/app_model.dart';
 import 'package:page_indicator/page_indicator.dart';
 
 import '../config/banner_config.dart';
 import '../header/header_text.dart';
 import '../helper/helper.dart';
 import 'banner_items.dart';
+import 'dart:async';
+
+import 'package:app_tracking_transparency/app_tracking_transparency.dart';
+import 'package:facebook_audience_network/facebook_audience_network.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:pedantic/pedantic.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 
 /// The Banner Group type to display the image as multi columns
 class BannerSlider extends StatefulWidget {

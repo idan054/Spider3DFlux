@@ -314,7 +314,7 @@ class AppState extends State<App>
               //   child: const Scaffold(body: AppInit()),
               // ),
                 home: UpgradeAlert(
-                  dialogStyle: UpgradeDialogStyle.cupertino,
+                  dialogStyle: UpgradeDialogStyle.material,
                   countryCode: 'IL',
                   child: const Scaffold(body: AppInit()),
                 ),
