@@ -72,7 +72,9 @@ class _AppInitState extends BaseScreen<AppInit> {
       /// Load App model config
       Services().setAppConfig(serverConfig);
       appConfig =
-          await Provider.of<AppModel>(context, listen: false).loadAppConfig();
+          await Provider.of<AppModel>(context, listen: false)
+              .loadAppConfig();
+      print('appConfig ${appConfig?.toJson()}');
 
       Future.delayed(Duration.zero, () {
         /// request app tracking to support io 14.5

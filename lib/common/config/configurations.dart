@@ -227,6 +227,7 @@ class Configurations {
     switch (key) {
       case 'appConfig':
         _appConfig = _remoteConfig.getString(appConfig);
+        print('_appConfig - $_appConfig');
         break;
       case 'serverConfig':
         _serverConfig = jsonDecode(_remoteConfig.getString('serverConfig')) ??

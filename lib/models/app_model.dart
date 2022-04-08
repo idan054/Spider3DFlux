@@ -152,6 +152,7 @@ class AppModel with ChangeNotifier {
 
   void loadStreamConfig(config) {
     appConfig = AppConfig.fromJson(config);
+    print('loadStreamConfig: $appConfig');
     isLoading = false;
     notifyListeners();
   }

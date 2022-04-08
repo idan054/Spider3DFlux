@@ -29,7 +29,8 @@ class BannerConfig {
   String? imageBanner;
   BoxFit? fit;
   int? intervalTime;
-  late final List<BannerItemConfig> items;
+  // late final List<BannerItemConfig> items; // original
+  List<BannerItemConfig> items = [];
 
   late final bool autoPlay;
   late final bool isSlider;

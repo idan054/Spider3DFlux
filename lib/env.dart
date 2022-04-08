@@ -26,14 +26,14 @@ Map<String, dynamic> environment = {
   },
 
   "advanceConfig": {
-    "isCaching": false, // (Fixed)
+    "isCaching": true, // (But getHomeCache() actually use refreshCache=true.)
     "kIsResizeImage": true,
     // "DefaultLanguage": "he",
     "DefaultLanguage": "he",
     "DetailedBlogLayout": "halfSizeImageType",
     "EnablePointReward": false,
     "hideOutOfStock":
-        false, //// Do not change to True, HardCoded hideOutOfStock // But those items might still show (Need to fix)
+        false, // Do not change to True, HardCoded hideOutOfStock // But those items might still show (Need to fix)
     "EnableRating": true,
     "hideEmptyProductListRating": true,
     "EnableShipping": true,

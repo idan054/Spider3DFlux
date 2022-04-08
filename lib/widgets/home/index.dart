@@ -186,6 +186,7 @@ class _HomeLayoutState extends State<HomeLayout> {
           delegate: SliverChildBuilderDelegate(
             (context, index) {
               var config = widgetData[index];
+              // print('widgetData[index] ${widgetData[index]}');
 
               /// if show app bar, the preview should plus +1
               var previewIndex = widget.isShowAppbar ? index + 1 : index;
@@ -211,6 +212,7 @@ class _HomeLayoutState extends State<HomeLayout> {
                 index: previewIndex,
                 config: config,
                 builder: (_config) {
+                  // print('PreviewOverlay _config $_config');
                   return DynamicLayout(_config);
                 },
               );

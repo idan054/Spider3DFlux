@@ -173,6 +173,7 @@ class AppState extends State<App>
     if (!kIsWeb) {
       appInitialModules();
     }
+    // Cache is needed for boarding, login & cart
     super.initState();
   }
 

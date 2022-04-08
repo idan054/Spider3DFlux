@@ -1,3 +1,5 @@
+// ignore_for_file: omit_local_variable_types
+
 import 'package:flutter/material.dart';
 import 'package:inspireui/inspireui.dart' show StoryWidget;
 import 'package:provider/provider.dart';
@@ -34,7 +36,10 @@ class DynamicLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     final appModel = Provider.of<AppModel>(context, listen: true);
 
+    // print('config file? $config');
+
     switch (config['layout']) {
+      // region others
       case 'logo':
         final themeConfig = appModel.themeConfig;
         return Logo(
@@ -105,11 +110,19 @@ class DynamicLayout extends StatelessWidget {
           config: BannerConfig.fromJson(config),
           key: config['key'] != null ? Key(config['key']) : UniqueKey(),
         );
-
+    // endregion others
       case 'bannerImage':
         if (config['isSlider'] == true) {
+          var _myConfig =  BannerConfig.fromJson(config);
+          print('_myConfig.toJson()'); // theres 3 (Sets)
+          print(_myConfig.toJson()); // theres 3 (Sets)
+          // because i Add 3 'bannerImage' to config_he.json
+
+          // _myConfig.items = [_myConfig.items.first, _myConfig.items.first];
+
           return BannerSlider(
-              config: BannerConfig.fromJson(config),
+              config: BannerConfig.fromJson(config), // original
+              // config: _myConfig,
               onTap: (itemConfig) {
                 NavigateTools.onTapNavigateOptions(
                   context: context,

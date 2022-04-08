@@ -1,3 +1,5 @@
+// ignore_for_file: omit_local_variable_types
+
 import 'dart:async';
 import 'dart:ui';
 
@@ -79,9 +81,41 @@ class _StateBannerSlider extends State<BannerSlider> {
   int position = 0; // Global Setup
   List items = []; // Global Setup
 
+
   @override
   void initState() {
-    /*List? */ items = widget.config.items;
+
+    // List? ConfigItems = widget.config.items;
+/*    BannerItemConfig item1 = ConfigItems.first;
+    var items = [
+      BannerItemConfig.fromJson(item1.toJson()),
+      BannerItemConfig.fromJson(item1.toJson()),
+      // BannerItemConfig.fromJson({
+      // 'category': 5707,
+      // 'image': 'https://www.spider3d.co.il/wp-content/uploads/2022/04/Anycubic-129.jpg',
+      // 'padding': 15.0,
+      // 'jsonData': {
+      // 'category': 5707,
+      // 'image': 'https://www.spider3d.co.il/wp-content/uploads/2022/04/Anycubic-129.jpg',
+      // 'padding': 15.0,
+      // }
+      // }),
+    ];
+    */
+    // BannerItemConfig? item1 = widget.config.items.first;
+    // widget.config.items = [
+    //   BannerItemConfig.fromJson(item1.toJson()),
+    //   BannerItemConfig.fromJson(item1.toJson()),
+    // ];
+    // print('Original items $items');
+
+    // theres 3 (Sets)
+    // because i Add 3 'bannerImage' to config_he.json
+    // var c_items = widget.config.items;
+    // my_config_items = [c_items.first, c_items.first];
+    // print('Original config.items ${widget.config.items}');
+    // widget.config.items = items;
+
     // position = items.length - 1; // REAL Setup
 
     autoPlay = widget.config.autoPlay;
@@ -129,6 +163,7 @@ class _StateBannerSlider extends State<BannerSlider> {
 
   Widget getBannerPageView(width) {
     List items = widget.config.items;
+    // List? items = [widget.config.items[0], widget.config.items[1]];
     var showNumber = widget.config.showNumber;
     var boxFit = widget.config.fit;
 
@@ -208,6 +243,7 @@ class _StateBannerSlider extends State<BannerSlider> {
 
   Widget renderBanner(width) {
     List? items = widget.config.items;
+    // List? items = [widget.config.items[0], widget.config.items[1]];
 
     switch (widget.config.design) {
       case 'swiper':
@@ -301,6 +337,7 @@ class _StateBannerSlider extends State<BannerSlider> {
     var isBlur = widget.config.isBlur;
 
     List? items = widget.config.items;
+    // List? items = [widget.config.items[0], widget.config.items[1]];
     var bannerExtraHeight =
         screenSize.height * (widget.config.title != null ? 0.12 : 0.0);
     var upHeight = Helper.formatDouble(widget.config.upHeight);

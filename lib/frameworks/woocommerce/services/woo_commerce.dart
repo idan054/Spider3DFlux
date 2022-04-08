@@ -230,13 +230,11 @@ class WooCommerce extends BaseServices {
       if (kAdvanceConfig['isCaching'] &&
           configCache != null &&
           (config['page'] == 1 || config['page'] == null)) {
+        print('config X $config');
         var obj;
         final horizontalLayout = configCache!['HorizonLayout'] as List?;
-        print("part Completed: A-1");
         // print(horizontalLayout);
-        print("part Completed: A-1.2");
         if (horizontalLayout != null) {
-          print("part Completed: A-1.3A");
           obj = horizontalLayout.firstWhere(
                   (o) =>
               o['layout'] == config['layout'] &&
@@ -246,7 +244,7 @@ class WooCommerce extends BaseServices {
               orElse: () => null);
           if (obj != null && obj['data'].length > 0) {
             print('Successfully Load first page from cache.');
-            // print("My obj['data'] ${obj?['data']}");
+            print("My obj['data'] ${obj?['data']}");
             return obj?['data'];
           } else {
             // when null
@@ -1252,11 +1250,17 @@ class WooCommerce extends BaseServices {
   @override
   Future<Map<String, dynamic>?> getHomeCache(String? lang) async {
     try {
-      final data = await wcApi.getAsync('flutter/cache?lang=$lang');
+      // https://spider3d.co.il/wp-json/wc/v2/flutter/cache?lang=he&consumer_key=ck_7a3d5e60f97f9f23b496c5df76dfef93dc0bb6da&consumer_secret=cs_46c490ebf03bd03be4577475e777ca75408dd8c3
+      // https://config-fluxstore-mauve.vercel.app/
+      // final data = await wcApi.getAsync('flutter/cache?lang=$lang',
+      final data = await wcApi.getAsync('flutter/cache?lang=$lang',
+        refreshCache: true); // refresh manually // based mstore-plugin
       if (data['message'] != null) {
         throw Exception(data['message']);
       }
       var config = data;
+      print('getHomeCache ${data['bannerImage_UpdatedAt']}');
+      // print('getHomeCache $data');
       if (config['HorizonLayout'] != null) {
         var horizontalLayout = config['HorizonLayout'] as List;
         List<dynamic>? items = [];
