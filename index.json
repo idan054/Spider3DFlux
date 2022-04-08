@@ -1,5 +1,5 @@
 {
- "bannerImage_UpdatedAt": "08/04/2022 16:34:16",
+ "bannerImage_UpdatedAt": "08/04/2022 16:43:32",
  "HorizonLayout": [
   {
    "layout": "logo",
@@ -20,7 +20,13 @@
    "design": "default",
    "showBackGround": true,
    "radius": 8,
-   "items": []
+   "items": [
+    {
+     "category": "25056",
+     "image": "https://www.spider3d.co.il/wp-content/uploads/2022/04/Anycubic-129.jpg",
+     "padding": 15.0
+    }
+   ]
   },
   {
    "layout": "category",
