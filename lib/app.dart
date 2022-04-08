@@ -26,6 +26,7 @@ import 'services/dependency_injection.dart';
 import 'services/index.dart';
 import 'services/notification/notification_service.dart';
 import 'widgets/overlay/custom_overlay_state.dart';
+import 'dart:io' show Platform;
 
 class App extends StatefulWidget {
   final String languageCode;
@@ -163,7 +164,9 @@ class AppState extends State<App>
   @override
   void initState() {
     printLog('[AppState] initState');
-    checkForUpdate();
+    // ToDo: fix Makes White screen on IOS!
+    if (Platform.isAndroid) checkForUpdate();
+
     _app = AppModel(widget.languageCode);
     WidgetsBinding.instance?.addObserver(this);
 
