@@ -120,7 +120,8 @@ class _StateBannerSlider extends State<BannerSlider> {
 
     autoPlay = widget.config.autoPlay;
     _controller = PageController();
-    intervalTime = widget.config.intervalTime ?? 5;
+    // intervalTime = widget.config.intervalTime ?? 5;
+    intervalTime = 3;
     autoPlayBanner();
 
     super.initState();
@@ -129,21 +130,26 @@ class _StateBannerSlider extends State<BannerSlider> {
   void autoPlayBanner() {
     // List? items = widget.config.items;
     timer = Timer.periodic(Duration(seconds: intervalTime), (callback) {
+      // print('position $position');
       if (widget.config.design != 'default' || !autoPlay) {
         timer!.cancel();
       } else if (widget.config.design == 'default' && autoPlay) {
         // if (position >= items.length - 1 && _controller!.hasClients) {
         if (position <= 0 && _controller!.hasClients) {
+            // print('items.length ${widget.config.items.length}');
           // print("$position, ${items.length}");
           // _controller!.jumpToPage(0);
           // _controller!.animateToPage(2,
-          _controller!.animateToPage(items.length - 1,
+          _controller!.animateToPage(widget.config.items.length-1,
+          // _controller!.animateToPage(items.length - 1,
+          // _controller!.animateToPage(items.length + 1,
               duration: const Duration(milliseconds: 800),
               curve: Curves.easeInOut);
         } else {
           if (_controller!.hasClients) {
             // print("$position < ${items.length - 1}");
             _controller!.animateToPage(position - 1,
+            // _controller!.animateToPage(position + 1,
                 duration: const Duration(seconds: 1), curve: Curves.easeInOut);
           }
         }

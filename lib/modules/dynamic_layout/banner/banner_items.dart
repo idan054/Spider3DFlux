@@ -47,14 +47,16 @@ class BannerImageItem extends StatelessWidget {
         width: itemWidth,
         constraints: const BoxConstraints(minHeight: 10.0),
         child: Padding(
-          padding: EdgeInsets.only(left: _padding, right: _padding),
+          // padding: EdgeInsets.only(left: _padding, right: _padding),
+          padding: const EdgeInsets.only(left: 5, right: 5),
+          // padding: EdgeInsets.zero,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(_radius),
             // This condition JUST allow to use link or file on the config.
             child: config.image.toString().contains('http')
                 ? ImageTools.image(
-                    fit: boxFit ?? BoxFit.fitWidth,
-                    // fit: BoxFit.fill,
+                    // fit: boxFit ?? BoxFit.fitWidth,
+                    fit: BoxFit.fill,
                     url: config.image,
                   )
                 : Image.asset(
