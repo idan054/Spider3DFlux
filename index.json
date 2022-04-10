@@ -1,5 +1,5 @@
 {
- "bannerImage_UpdatedAt": "09/04/2022 07:53:44",
+ "bannerImage_UpdatedAt": "10/04/2022 18:04:24",
  "HorizonLayout": [
   {
    "layout": "logo",
@@ -22,18 +22,18 @@
    "radius": 8,
    "items": [
     {
-     "category": "5707",
-     "image": "https://www.spider3d.co.il/wp-content/uploads/2022/04/Anycubic-129.jpg",
+     "hornet": "25056",
+     "image": "https://www.spider3d.co.il/wp-content/uploads/2022/04/hornet-980-1-scaled.jpg",
      "padding": 15.0
     },
     {
-     "product": "25056",
-     "image": "https://www.spider3d.co.il/wp-content/uploads/2022/04/hornet-980-scaled.jpg",
+     "anycubic resin": "5707",
+     "image": "https://www.spider3d.co.il/wp-content/uploads/2022/04/Anycubic-129-1-scaled.jpg",
      "padding": 15.0
     },
     {
-     "category": "5655",
-     "image": "https://www.spider3d.co.il/wp-content/uploads/2022/04/סילק-scaled.jpg",
+     "סילק": "5655",
+     "image": "https://www.spider3d.co.il/wp-content/uploads/2022/04/silk-95-app-scaled.jpg",
      "padding": 15.0
     }
    ]
