@@ -1002,15 +1002,26 @@ class WooCommerce extends BaseServices {
     listingLocation = '',
     userId,
   }) async {
+    print('searchProducts() ATTR:');
+    print('name: $name');
+    print('categoryId: $categoryId');
+    print('categoryName: $categoryName');
+    print('tag: $tag');
+    print('attribute: $attribute');
+    print('attributeId: $attributeId');
+    print('page: $page');
+    print('lang: $lang');
+    print('listingLocation: $listingLocation');
+    print('userId: $userId');
     try {
       // var endPoint = 'products?status=publish&page=$page&per_page=$ApiPageSize'; //Original
-      var endPoint = 'products?status=publish&page=$page&per_page=100';
+      var endPoint = 'products?status=publish&per_page=100';
 
       if ((lang?.isNotEmpty ?? false) && kAdvanceConfig['isMultiLanguages']) {
         endPoint += '&lang=$lang';
       }
 
-/*      if (categoryId != null) {
+      if (categoryId != null) {
         endPoint += '&category=$categoryId';
       }
 
@@ -1024,7 +1035,7 @@ class WooCommerce extends BaseServices {
 
       if (tag != null) {
         endPoint += '&tag=$tag';
-      }*/
+      }
 
       endPoint += '&min_price=1';
       endPoint += '&stock_status=instock';
@@ -1032,7 +1043,16 @@ class WooCommerce extends BaseServices {
       if (userId != null) {
         endPoint += '&user_id=$userId';
       }
-      var response = await wcApi.getAsync('$endPoint&search=$name');
+      print('endPoint! https://spider3d.co.il/wp-json/wc/v3/$endPoint&search=$name&consumer_key=ck_7a3d5e60f97f9f23b496c5df76dfef93dc0bb6da&consumer_secret=cs_46c490ebf03bd03be4577475e777ca75408dd8c3');
+
+      // + refreshCache: true
+      var response = await wcApi.getAsync('$endPoint&search=$name&page=$page', refreshCache: true);
+      // - page (removed): '$page=$page'
+      if(response.toList().isEmpty) {
+        print('resp was empty! removes pages counter..');
+        response = await wcApi.getAsync('$endPoint&search=$name', refreshCache: true);
+      }
+      print('response $response');
       if (response is Map && isNotBlank(response['message'])) {
         throw Exception(response['message']);
       } else {

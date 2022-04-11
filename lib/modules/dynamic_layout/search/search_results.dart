@@ -33,6 +33,7 @@ class _SearchResultsState extends State<SearchResults> {
       page: _page,
       lang: Provider.of<AppModel>(context, listen: false).langCode,
     )!;
+    print('search_result.dart - newProducts $newProducts');
 
     if (newProducts.isEmpty) {
       _isEnd = true;

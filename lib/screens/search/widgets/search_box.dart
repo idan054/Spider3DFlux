@@ -113,7 +113,8 @@ class _SearchBoxState extends State<SearchBox> {
                     controller: _textController,
                     autofocus: widget.autoFocus,
                     focusNode: widget.focusNode,
-                    onSubmitted: (value) => widget.onSubmitted?.call(value),
+                    onSubmitted: (value) =>
+                        widget.onSubmitted?.call(value),
                   ),
                 ),
                 if (widget.showCancelButton)

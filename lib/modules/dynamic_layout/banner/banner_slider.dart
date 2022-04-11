@@ -139,7 +139,7 @@ class _StateBannerSlider extends State<BannerSlider> {
             // print('items.length ${widget.config.items.length}');
           // print("$position, ${items.length}");
           // _controller!.jumpToPage(0);
-          // _controller!.animateToPage(2,
+          // _controller!.animateToPage(2,2
           _controller!.animateToPage(widget.config.items.length-1,
           // _controller!.animateToPage(items.length - 1,
           // _controller!.animateToPage(items.length + 1,
@@ -172,6 +172,18 @@ class _StateBannerSlider extends State<BannerSlider> {
     // List? items = [widget.config.items[0], widget.config.items[1]];
     var showNumber = widget.config.showNumber;
     var boxFit = widget.config.fit;
+    // print('items');
+    BannerItemConfig x = items[0];
+    // BannerItemConfig y = items[1];
+    // BannerItemConfig z = items[2];
+    var xId = x.jsonData.values.toList()[0];
+    // print('xId');
+    // print(xId);
+
+
+
+    // print(y.toJson());
+    // print(z.toJson());
 
     // if (items.isNotEmpty) {
     return Padding(

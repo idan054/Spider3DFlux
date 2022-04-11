@@ -35,7 +35,7 @@ class SearchModel extends ChangeNotifier {
 
   List<String> keywords = [];
   List<Product>? _products = [];
-  int _page = 1;
+  int _page = 0;
   bool _isEnd = false;
   String? _currentName = '';
   late CancelableOperation _cancelLoadProduct;
@@ -63,36 +63,45 @@ class SearchModel extends ChangeNotifier {
       bool hasFilter = false,
       userId,
       RefreshController? controller}) async {
-    if (name != _currentName || hasFilter) {
+    if (name != _currentName /*|| hasFilter*/) {
       _currentName = name;
       _page = 1;
       _products = null;
       _isEnd = false;
-    } else {
+    } // else {
+      print('loadProduct() _page++');
       _page++;
-    }
+    //  }
+    print('loadProduct() A');
 
-    if (!hasFilter) {
+   /* if (!hasFilter) {
+    print('loadProduct() no filter');
       if (_isEnd) return;
-    }
+    }*/
 
     /// Cancel a previous product search request when a new request is created
     if (isLoading) {
+      print('loadProduct() isLoading');
       await _cancelLoadProduct.cancel();
     }
 
+    print('loadProduct() B');
     isLoading = true;
     notifyListeners();
 
+    print('loadProduct() newProducts...');
     List<Product> newProducts;
 
+    /// --------------------+
     _cancelLoadProduct = CancelableOperation.fromFuture(_searchProducts(
       name: name!,
       page: _page,
       userId: userId,
     ));
-
     newProducts = await _cancelLoadProduct.value;
+    /// --------------------+
+
+    print('search_model.dart - newProducts $newProducts');
 
     if (newProducts.isEmpty) {
       if (products?.isEmpty ?? true) {
@@ -187,6 +196,8 @@ class SearchModel extends ChangeNotifier {
             listingLocation: listingLocation,
             userId: userId,
           )!;
+
+      print('_searchProducts() data $data'); // []
 
       if (data.isNotEmpty && page == 1 && name.isNotEmpty) {
         var index = keywords.indexOf(name);

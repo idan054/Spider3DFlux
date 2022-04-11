@@ -79,6 +79,7 @@ class _StateSearchScreen extends State<SearchScreen>
   }
 
   void _onSearchTextChange(String value) {
+    print('_onSearchTextChange()');
     if (value.isEmpty) {
       _showResult = false;
       setState(() {});

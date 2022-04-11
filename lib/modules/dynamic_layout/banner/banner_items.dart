@@ -40,8 +40,8 @@ class BannerImageItem extends StatelessWidget {
       // onTap: () => print(config.image.toString()),
       // onTap: () {//   config.jsonData;// },
       onTap: () {
+        // config.jsonData
         onTap(config.jsonData);
-        print(onTap(config.jsonData));
       },
       child: Container(
         width: itemWidth,

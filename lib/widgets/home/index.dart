@@ -66,11 +66,11 @@ class _HomeLayoutState extends State<HomeLayout> {
 
 
       // below is my
-      print('A data');
+      // print('A data');
       // appConfig = await
       // Provider.of<AppModel>(context, listen: false).loadAppConfig()
       //     .then((data) => print('B data ${data?.toJson()}'));
-      print('C data');
+      // print('C data');
 
     super.initState();
   }

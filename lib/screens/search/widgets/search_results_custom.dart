@@ -36,13 +36,14 @@ class _SearchResultsCustomState extends State<SearchResultsCustom> {
     final _userId = Provider.of<UserModel>(context, listen: false).user?.id;
     return Consumer<SearchModel>(
       builder: (_, model, __) {
-        var _products = model.products;
+        var _products = model.products; // []
 
         if (_products == null) {
           return kLoadingWidget(context);
         }
 
         if (_products.isEmpty) {
+          print('_products.isEmpty');
           return Center(
             child: Text(S.of(context).noProduct),
           );
@@ -56,9 +57,10 @@ class _SearchResultsCustomState extends State<SearchResultsCustom> {
         // List<Product> tempList = [];
         var tempList = _products;
         var search_result = widget.name;
+        print('search_results_custom.dart _products - $_products');
         _products.forEach((element) {
           if (element.name!.contains(search_result)) {
-            // print(element.name);
+            print(element.name);
             tempList.remove(element);
             tempList.insert(0, element);
           }
@@ -84,6 +86,7 @@ class _SearchResultsCustomState extends State<SearchResultsCustom> {
           child: ListView.builder(
             itemCount: _products.length,
             itemBuilder: (context, index) {
+
               // final product = _products[index];
               final product = _products![index];
               return SimpleListView(item: product);

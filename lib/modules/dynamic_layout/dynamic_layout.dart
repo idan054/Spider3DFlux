@@ -114,15 +114,14 @@ class DynamicLayout extends StatelessWidget {
       case 'bannerImage':
         if (config['isSlider'] == true) {
           var _myConfig =  BannerConfig.fromJson(config);
-          print('_myConfig.toJson()'); // theres 3 (Sets)
-          print(_myConfig.toJson()); // theres 3 (Sets)
+          // print('_myConfig.toJson()'); // theres 3 (Sets)
+          // print(_myConfig.toJson()); // theres 3 (Sets)
           // because i Add 3 'bannerImage' to config_he.json
 
           // _myConfig.items = [_myConfig.items.first, _myConfig.items.first];
-
           return BannerSlider(
-              config: BannerConfig.fromJson(config), // original
-              // config: _myConfig,
+              config: _myConfig, // original
+              // config: config,
               onTap: (itemConfig) {
                 NavigateTools.onTapNavigateOptions(
                   context: context,

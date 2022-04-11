@@ -20,6 +20,9 @@ class NavigateTools {
       {BuildContext? context,
       required Map config,
       List<Product>? products}) async {
+    // print('CONFIG $config'); // my
+
+
     /// support to show the product detail
     if (config['product'] != null) {
       /// for pre-load the product detail

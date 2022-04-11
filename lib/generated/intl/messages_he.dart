@@ -411,7 +411,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "noPost": MessageLookupByLibrary.simpleMessage(
             "Opps, נראה כי דף זה כבר אינו קיים!"),
         "noProduct": MessageLookupByLibrary.simpleMessage(
-            "אין תוצאות... \nנסה לחפש בקטגוריה שונה"),
+            "אין תוצאות... \nנסה מילת חיפוש שונה"),
         "noResultFound": MessageLookupByLibrary.simpleMessage("לא נמצאה תוצאה"),
         "noReviews": MessageLookupByLibrary.simpleMessage("אין ביקורות"),
         "noSlotAvailable":
