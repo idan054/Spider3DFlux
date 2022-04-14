@@ -133,6 +133,7 @@ class AppState extends State<App>
       });
     }
   }
+
   AppUpdateInfo? _updateInfo;
 
   // Platform messages are asynchronous, so we initialize in an async method.
@@ -146,20 +147,17 @@ class AppState extends State<App>
           '\n${info.flexibleUpdateAllowed},'
           '\n${info.immediateUpdateAllowed}'
           '\n${info.updatePriority},'
-          '\n${info.toString()},'
-          );
-      if(_updateInfo!=null){
-        if(_updateInfo!.updateAvailability == 2) {
+          '\n${info.toString()},');
+      if (_updateInfo != null) {
+        if (_updateInfo!.updateAvailability == 2) {
           if (_updateInfo!.immediateUpdateAllowed) {
             InAppUpdate.performImmediateUpdate();
           }
           InAppUpdate.startFlexibleUpdate();
         }
       }
-    }).catchError((e) {
-    });
+    }).catchError((e) {});
   }
-
 
   @override
   void initState() {
@@ -265,8 +263,10 @@ class AppState extends State<App>
                 Provider<PaymentMethodModel>.value(value: _paymentMethod),
                 Provider<RecentModel>.value(value: _recent),
                 Provider<UserModel>.value(value: _user),
-                ChangeNotifierProvider<CheckoutProviderV3>(create: (_) => CheckoutProviderV3()), // my
-                ChangeNotifierProvider<ListBlogModel>(create: (_) => ListBlogModel()),
+                ChangeNotifierProvider<CheckoutProviderV3>(
+                    create: (_) => CheckoutProviderV3()), // my
+                ChangeNotifierProvider<ListBlogModel>(
+                    create: (_) => ListBlogModel()),
                 ChangeNotifierProvider<FilterAttributeModel>(
                     create: (_) => _filterModel),
                 ChangeNotifierProvider<FilterTagModel>(
@@ -311,18 +311,14 @@ class AppState extends State<App>
                   SubCupertinoLocalizations.delegate,
                 ],
                 supportedLocales: S.delegate.supportedLocales,
-              //   home: UpgradeAlert(
-              //   dialogStyle: UpgradeDialogStyle.cupertino,
-              //   countryCode: 'IL',
-              //   debugLogging: true,
-              //   child: const Scaffold(body: AppInit()),
-              // ),
-                home: UpgradeAlert(
-                  dialogStyle: UpgradeDialogStyle.material,
-                  countryCode: 'IL',
-                  child: const Scaffold(body: AppInit()),
-                ),
-                // home: const CheckoutScreenV3(),
+
+                home: Platform.isAndroid
+                    ? UpgradeAlert(
+                        dialogStyle: UpgradeDialogStyle.material,
+                        countryCode: 'IL',
+                        child: const Scaffold(body: AppInit()),
+                      )
+                    : const Scaffold(body: AppInit()),
                 routes: Routes.getAll(),
                 debugShowCheckedModeBanner: false,
                 onGenerateRoute: Routes.getRouteGenerate,

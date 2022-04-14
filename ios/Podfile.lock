@@ -230,6 +230,8 @@ PODS:
     - Firebase/Firestore (= 8.0.0)
     - firebase_core
     - Flutter
+  - device_info_plus (0.0.1):
+    - Flutter
   - devicelocale (0.0.1):
     - Flutter
   - DKImagePickerController/Core (4.3.2):
@@ -540,6 +542,8 @@ PODS:
   - OneSignalXCFramework (3.8.1)
   - package_info (0.0.1):
     - Flutter
+  - package_info_plus (0.4.5):
+    - Flutter
   - path_provider (0.0.1):
     - Flutter
   - PromisesObjC (2.0.0)
@@ -580,6 +584,7 @@ PODS:
 DEPENDENCIES:
   - app_tracking_transparency (from `.symlinks/plugins/app_tracking_transparency/ios`)
   - cloud_firestore (from `.symlinks/plugins/cloud_firestore/ios`)
+  - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
   - devicelocale (from `.symlinks/plugins/devicelocale/ios`)
   - facebook_audience_network (from `.symlinks/plugins/facebook_audience_network/ios`)
   - file_picker (from `.symlinks/plugins/file_picker/ios`)
@@ -605,6 +610,7 @@ DEPENDENCIES:
   - notification_permissions (from `.symlinks/plugins/notification_permissions/ios`)
   - onesignal_flutter (from `.symlinks/plugins/onesignal_flutter/ios`)
   - package_info (from `.symlinks/plugins/package_info/ios`)
+  - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - rate_my_app (from `.symlinks/plugins/rate_my_app/ios`)
   - razorpay_flutter (from `.symlinks/plugins/razorpay_flutter/ios`)
@@ -670,6 +676,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/app_tracking_transparency/ios"
   cloud_firestore:
     :path: ".symlinks/plugins/cloud_firestore/ios"
+  device_info_plus:
+    :path: ".symlinks/plugins/device_info_plus/ios"
   devicelocale:
     :path: ".symlinks/plugins/devicelocale/ios"
   facebook_audience_network:
@@ -720,6 +728,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/onesignal_flutter/ios"
   package_info:
     :path: ".symlinks/plugins/package_info/ios"
+  package_info_plus:
+    :path: ".symlinks/plugins/package_info_plus/ios"
   path_provider:
     :path: ".symlinks/plugins/path_provider/ios"
   rate_my_app:
@@ -756,6 +766,7 @@ SPEC CHECKSUMS:
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   BSImagePicker: 0fe04b574d4d6b81093785d2af6c26227efc8428
   cloud_firestore: 677849586720293046982ccfa20013a6266d7928
+  device_info_plus: e5c5da33f982a436e103237c0c85f9031142abed
   devicelocale: b22617f40038496deffba44747101255cee005b0
   DKImagePickerController: b5eb7f7a388e4643264105d648d01f727110fc3d
   DKPhotoGallery: fdfad5125a9fdda9cc57df834d49df790dbb4179
@@ -815,6 +826,7 @@ SPEC CHECKSUMS:
   onesignal_flutter: d63972959d66127e50f114ea8070ca540d79012a
   OneSignalXCFramework: cd6290d43d4f7dd0443d34e7be8b95996417644e
   package_info: 873975fc26034f0b863a300ad47e7f1ac6c7ec62
+  package_info_plus: 6c92f08e1f853dc01228d6f553146438dafcd14e
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   rate_my_app: b2b5847177b024ab7fcfd02ced7a84a9b67eeaf2
@@ -834,6 +846,6 @@ SPEC CHECKSUMS:
   wakelock: d0fc7c864128eac40eba1617cb5264d9c940b46f
   webview_flutter: 9f491a9b5a66f2573946a389b2677987b0ff8c0b
 
-PODFILE CHECKSUM: 76c997715d3d3612c473545b7f6a402fea5b0d72
+PODFILE CHECKSUM: 8afde36e2d9230ce0b6b6a558a38b79978330452
 
 COCOAPODS: 1.11.2
