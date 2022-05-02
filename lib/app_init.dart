@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:facebook_audience_network/facebook_audience_network.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -21,7 +23,9 @@ import 'models/index.dart'
         TagModel;
 import 'models/listing/listing_location_model.dart';
 import 'models/notification_model.dart';
+import 'models/user_model.dart';
 import 'modules/dynamic_layout/config/app_config.dart';
+import 'modules/firebase/firebase_service.dart';
 import 'screens/base_screen.dart';
 import 'screens/blog/models/list_blog_model.dart';
 import 'services/dependency_injection.dart';
@@ -57,9 +61,14 @@ class _AppInitState extends BaseScreen<AppInit> {
 
   /// Check if the App is Login
   bool checkLogin() {
+    FirebaseServices().reloadUser().then((value) => {
+      if(!value){
+        Navigator.of(context).pushReplacementNamed(RouteList.login)
+      }
+    });
     final hasLogin =
-        injector<SharedPreferences>().getBool(LocalStorageKey.loggedIn);
-    return hasLogin ?? false;
+        (injector<SharedPreferences>().getBool(LocalStorageKey.loggedIn) ?? false);
+    return hasLogin;
   }
 
   Future<void> loadInitData() async {
@@ -74,7 +83,7 @@ class _AppInitState extends BaseScreen<AppInit> {
       appConfig =
           await Provider.of<AppModel>(context, listen: false)
               .loadAppConfig();
-      print('appConfig ${appConfig?.toJson()}');
+      log('appConfig ${appConfig?.toJson()}');
 
       Future.delayed(Duration.zero, () {
         /// request app tracking to support io 14.5

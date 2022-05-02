@@ -312,13 +312,7 @@ class AppState extends State<App>
                 ],
                 supportedLocales: S.delegate.supportedLocales,
 
-                home: Platform.isAndroid
-                    ? UpgradeAlert(
-                        dialogStyle: UpgradeDialogStyle.material,
-                        countryCode: 'IL',
-                        child: const Scaffold(body: AppInit()),
-                      )
-                    : const Scaffold(body: AppInit()),
+                home: const Scaffold(body: AppInit()),
                 routes: Routes.getAll(),
                 debugShowCheckedModeBanner: false,
                 onGenerateRoute: Routes.getRouteGenerate,

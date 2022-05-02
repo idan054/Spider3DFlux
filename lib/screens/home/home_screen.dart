@@ -10,7 +10,9 @@ import '../../common/config.dart';
 import '../../common/constants.dart';
 import '../../common/tools.dart';
 import '../../models/app_model.dart';
+import '../../models/user_model.dart';
 import '../../modules/dynamic_layout/index.dart';
+import '../../modules/firebase/firebase_service.dart';
 import '../../services/index.dart';
 import '../../widgets/home/index.dart';
 import '../../widgets/home/preview_reload.dart';
@@ -94,6 +96,8 @@ class _HomeScreenState extends BaseScreen<HomeScreen>
     });
   }
 
+
+
   @override
   Future<void> afterFirstLayout(BuildContext context) async {
     Future.delayed(
@@ -103,6 +107,7 @@ class _HomeScreenState extends BaseScreen<HomeScreen>
 
     /// init dynamic link
     Services().firebase.initDynamicLinkService(context);
+
   }
 
   @override

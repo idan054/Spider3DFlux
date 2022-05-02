@@ -28,16 +28,16 @@ if (flutterRoot == null) {
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
-    flutterVersionCode = '42004'
+    flutterVersionCode = '43001'
 }
 
 def flutterVersionName = localProperties.getProperty('flutter.versionName')
 if (flutterVersionName == null) {
-    flutterVersionName = '42.00.5 - IOS Release [V]'
+    flutterVersionName = '43.00.1 - Fixed authentication issues'
 }
 
 apply plugin: 'com.android.application'
-apply plugin: 'com7.google.gms.google-services'
+apply plugin: 'com.google.gms.google-services'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 

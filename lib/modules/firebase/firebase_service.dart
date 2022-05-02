@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -7,6 +8,7 @@ import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:get_it/get_it.dart';
 
 import '../../common/config.dart';
 import '../../common/constants.dart';
@@ -18,6 +20,8 @@ import 'firebase_remote_service.dart';
 import 'realtime_chat/chat_screen.dart';
 import 'realtime_chat/list_chat_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'package:fstore/models/user_model.dart' as appUser;
 
 class FirebaseServices extends BaseFirebaseServices {
   static final FirebaseServices _instance = FirebaseServices._internal();
@@ -259,5 +263,19 @@ class FirebaseServices extends BaseFirebaseServices {
     if (isEnabled) {
       await FirebaseServices().auth?.signOut();
     }
+  }
+
+  Future<bool> reloadUser() async {
+    print("reloading user");
+    try{
+      await FirebaseServices().auth?.currentUser?.getIdToken(true);
+    } catch(e){
+      print("logging out the user");
+      await appUser.UserModel().logout();
+      return false;
+    } finally{
+      print("user intact");
+    }
+    return true;
   }
 }

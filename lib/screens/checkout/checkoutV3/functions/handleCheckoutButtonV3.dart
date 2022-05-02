@@ -14,12 +14,16 @@ import 'package:fstore/services/services.dart';
 // import 'package:fstore/frameworks/woocommerce/index.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../app.dart';
+import '../../../../common/constants.dart';
+import '../../../../models/index.dart';
+import '../../../../modules/firebase/firebase_service.dart';
 import '../../webview_checkout_success_screen.dart';
 import '../checkoutV3_provider.dart';
 import 'handleFormV3.dart';
 import 'handleNotesDialogV3.dart';
 
-String checkCheckoutButtonV3(context, CartModel cartModel) {
+Future<String> checkCheckoutButtonV3(context, CartModel cartModel) async {
   // region A lot of prints.
   // Products (price)
   print('products price:        + ${cartModel.getSubTotal()}');
@@ -121,10 +125,17 @@ String checkCheckoutButtonV3(context, CartModel cartModel) {
     return true;
   }
 
-  bool _userLoggedOk() {
+  Future<bool> _userLoggedOk() async {
     print('_userLoggedOk()...');
     if (cartModel.user?.loggedIn == null || cartModel.user?.loggedIn == false) {
       print('Something Wrong with _userLoggedOk...');
+      // await UserModel().logout();
+      Navigator.of(
+        App.fluxStoreNavigatorKey.currentContext!,
+      ).pushNamedAndRemoveUntil(
+        RouteList.login,
+            (route) => false,
+      );
       return false;
     }
 
@@ -154,7 +165,10 @@ String checkCheckoutButtonV3(context, CartModel cartModel) {
   // _paymentMethodOk() ? null : errorNotes += ' בחר שיטת תשלום \n';
   _shippingMethodOk() ? null : errorNotes += ' בחר שיטת משלוח \n';
 
-  _userLoggedOk() ? null : errorNotes += 'נא התחבר בעמוד הפרופיל \n';
+  await _userLoggedOk() ? null : errorNotes += 'נא התחבר בעמוד הפרופיל \n';
+
+  Services().firebase.reloadUser();
+
   return errorNotes;
 }
 
@@ -209,7 +223,7 @@ void handleCheckoutButton(context, CartModel cartModel, /*Function onFinish*/) a
                      '<<< הוזמן באפליקצייה >>>');
 
   // 2. Check all values
-  var errorNotes = checkCheckoutButtonV3(context, cartModel, /*Function onFinish*/);
+  var errorNotes = await checkCheckoutButtonV3(context, cartModel, /*Function onFinish*/);
   print('errorNotes: \n$errorNotes');
   if (errorNotes.isNotEmpty) {
     Scaffold.of(context).showSnackBar(errSnackBar(context, errorNotes));

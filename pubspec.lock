@@ -7,7 +7,7 @@ packages:
       name: _fe_analyzer_shared
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "22.0.0"
+    version: "31.0.0"
   after_layout:
     dependency: transitive
     description:
@@ -21,7 +21,7 @@ packages:
       name: analyzer
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.7.1"
+    version: "2.8.0"
   animate_icons:
     dependency: "direct main"
     description:
@@ -77,7 +77,7 @@ packages:
       name: async
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.6.1"
+    version: "2.8.1"
   auto_size_text:
     dependency: "direct main"
     description:
@@ -140,7 +140,7 @@ packages:
       name: charcode
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.2.0"
+    version: "1.3.1"
   chewie:
     dependency: transitive
     description:
@@ -401,7 +401,7 @@ packages:
       name: file
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.1.0"
+    version: "6.1.2"
   file_picker:
     dependency: "direct main"
     description:
@@ -765,6 +765,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "9.0.0"
+  frontend_server_client:
+    dependency: transitive
+    description:
+      name: frontend_server_client
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.2"
   fuchsia_remote_debug_protocol:
     dependency: transitive
     description: flutter
@@ -1154,7 +1161,7 @@ packages:
       name: meta
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.3.0"
+    version: "1.7.0"
   mime:
     dependency: transitive
     description:
@@ -1420,7 +1427,7 @@ packages:
       name: process
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.2.1"
+    version: "4.2.3"
   provider:
     dependency: "direct main"
     description:
@@ -1763,21 +1770,21 @@ packages:
       name: test
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.16.8"
+    version: "1.17.10"
   test_api:
     dependency: transitive
     description:
       name: test_api
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.0"
+    version: "0.4.2"
   test_core:
     dependency: transitive
     description:
       name: test_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.19"
+    version: "0.4.0"
   the_apple_sign_in:
     dependency: "direct main"
     description:
@@ -1945,7 +1952,7 @@ packages:
       name: vm_service
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.2.0"
+    version: "7.1.1"
   wakelock:
     dependency: transitive
     description:
@@ -2052,5 +2059,5 @@ packages:
     source: hosted
     version: "3.1.0"
 sdks:
-  dart: ">=2.13.0 <3.0.0"
+  dart: ">=2.14.0 <3.0.0"
   flutter: ">=2.2.0"

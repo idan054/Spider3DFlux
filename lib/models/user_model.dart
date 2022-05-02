@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:localstorage/localstorage.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:the_apple_sign_in/the_apple_sign_in.dart' as apple;
 
+import '../app.dart';
 import '../common/config.dart';
 import '../common/constants.dart';
 import '../generated/l10n.dart';
 import '../services/index.dart';
+import 'cart/cart_model.dart';
 import 'entities/user.dart';
 
 abstract class UserModelDelegate {
@@ -312,5 +315,45 @@ class UserModel with ChangeNotifier {
     } catch (err) {
       return false;
     }
+  }
+
+  onTapLogout(context) async {
+    await Provider.of<UserModel>(context,
+        listen: false).logout();
+    if (kLoginSetting['IsRequiredLogin'] ??
+        false) {
+      await Navigator.of(App
+          .fluxStoreNavigatorKey
+          .currentContext!)
+          .pushNamedAndRemoveUntil(
+        RouteList.login,
+            (route) => false,
+      );
+    }
+
+    // My show / clear all SharedPreferences data
+    var prefs =
+        await SharedPreferences.getInstance();
+
+    print(
+        'loadInitData - prefs.getKeys ${prefs.getKeys()}');
+    await prefs.remove('loggedIn');
+    await prefs.clear(); // remove all ces.getInstance() data
+    await prefs.setBool('seen', true);
+
+    final fstore_storage =
+    LocalStorage('fstore');
+    final address_storage =
+    LocalStorage('address');
+    final data_order_storage =
+    LocalStorage('data_order');
+
+    await fstore_storage.clear();
+    await address_storage.clear();
+    await data_order_storage.clear();
+
+    Provider.of<CartModel>(context).dispose();
+    // Provider.of<AppModel>(context).dispose();
+
   }
 }

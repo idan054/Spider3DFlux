@@ -3,13 +3,16 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../app.dart';
 import '../../common/constants.dart';
 import '../../common/tools.dart';
 import '../../models/app_model.dart';
+import '../../models/user_model.dart';
 import '../../modules/dynamic_layout/config/logo_config.dart';
 import '../../modules/dynamic_layout/dynamic_layout.dart';
 import '../../modules/dynamic_layout/logo/logo.dart';
 import '../../modules/dynamic_layout/vertical/vertical.dart';
+import '../../modules/firebase/firebase_service.dart';
 import '../../screens/blog/models/list_blog_model.dart';
 import 'preview_overlay.dart';
 
@@ -147,9 +150,32 @@ class _HomeLayoutState extends State<HomeLayout> {
     );
   }
 
+  void subscribeToAuthEvents(context) async {
+    FirebaseServices().auth?.idTokenChanges().listen((event) async {
+      if(event == null){
+        if(await UserModel().isLogin()) {
+          print("user will be logged out");
+          Navigator.of(
+            App.fluxStoreNavigatorKey.currentContext!,
+          ).pushNamedAndRemoveUntil(
+            RouteList.login,
+                (route) => false,
+          );
+          await UserModel().onTapLogout(context);
+          print('given context is ${App.fluxStoreNavigatorKey.currentContext}');
+        }
+      }
+      else {
+        print("user will be logged in ${event.email ?? ""}");
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     if (widget.configs == null) return Container();
+
+    subscribeToAuthEvents(context);
 
     ErrorWidget.builder = (error) {
       if (kReleaseMode) {
