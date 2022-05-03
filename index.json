@@ -1,5 +1,5 @@
 {
- "bannerImage_UpdatedAt": "10/04/2022 20:44:45",
+ "bannerImage_UpdatedAt": "03/05/2022 19:47:45",
  "HorizonLayout": [
   {
    "layout": "logo",
@@ -22,18 +22,8 @@
    "radius": 8,
    "items": [
     {
-     "product": "25056",
-     "image": "https://www.spider3d.co.il/wp-content/uploads/2022/04/hornet-980-1-scaled.jpg",
-     "padding": 15.0
-    },
-    {
-     "category": "5707",
-     "image": "image: https://www.spider3d.co.il/wp-content/uploads/2022/04/Anycubic-129-1-scaled.jpg",
-     "padding": 15.0
-    },
-    {
-     "category": "5655",
-     "image": "https://www.spider3d.co.il/wp-content/uploads/2022/04/silk-95-app-scaled.jpg",
+     "1": "1",
+     "image": "https://www.bizcetatil.com/images/tour/115_b.jpg",
      "padding": 15.0
     }
    ]
