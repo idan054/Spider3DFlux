@@ -90,16 +90,17 @@ class PaymentFormV3 extends StatelessWidget {
         }
 
         /// Will not auto Complete for security reasons
-        // if (model.address?.cardExpiryDate != null) _cardExpiryDateController.text = '${model.address?.cardExpiryDate}';
-        // if (model.address?.cardNumber != null) _cardNumberController.text = '${model.address?.cardNumber}';
-        // if (model.address?.cardCvv != null) _cardCvvController.text = '${model.address?.cardCvv}';
-        // if (model.address?.cardHolderId != null) _cardHolderIdController.text = '${model.address?.cardHolderId}';
+        if (model.address?.cardExpiryDate != null) _cardExpiryDateController.text = '${model.address?.cardExpiryDate}';
+        if (model.address?.cardNumber != null) _cardNumberController.text = '${model.address?.cardNumber}';
+        if (model.address?.cardCvv != null) _cardCvvController.text = '${model.address?.cardCvv}';
+        if (model.address?.cardHolderId != null) _cardHolderIdController.text = '${model.address?.cardHolderId}';
 
         if (model.address?.cardHolderName != null) {
            _cardHolderNameController.text = '${model.address?.cardHolderName}';
-      } else if (model.address?.firstName != null){
+        } else if (model.address?.firstName != null){
           _cardHolderNameController.text = '${model.address?.firstName}';
         }
+
       return
           ClipRRect(
             borderRadius: BorderRadius.circular(5),

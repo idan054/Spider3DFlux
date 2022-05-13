@@ -235,7 +235,8 @@ class User {
       'nicename': nicename,
       'url': userUrl,
       'isSocial': isSocial,
-      'isVender': isVender
+      'isVender': isVender,
+      'shipping' : shipping != null ? shipping?.toJson() : null,
     };
   }
 
@@ -254,6 +255,12 @@ class User {
       userUrl = json['url'];
       isSocial = json['isSocial'];
       isVender = json['isVender'];
+      if (json['shipping'] != null) {
+        shipping = Shipping.fromJson(json['shipping']);
+      }
+      // if (json['billing'] != null) {
+      //   billing = Billing.fromJson(json['billing']);
+      // }
     } catch (e) {
       printLog(e.toString());
     }

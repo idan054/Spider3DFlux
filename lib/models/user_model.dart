@@ -10,6 +10,7 @@ import '../app.dart';
 import '../common/config.dart';
 import '../common/constants.dart';
 import '../generated/l10n.dart';
+import '../routes/flux_navigate.dart';
 import '../services/index.dart';
 import 'cart/cart_model.dart';
 import 'entities/user.dart';
@@ -23,6 +24,7 @@ abstract class UserModelDelegate {
 }
 
 class UserModel with ChangeNotifier {
+
   UserModel() {
     getUser();
   }
@@ -160,12 +162,13 @@ class UserModel with ChangeNotifier {
     }
   }
 
-  Future<void> saveUser(User? user) async {
+  Future<void> saveUser(User? newUser) async {
     final storage = LocalStorage('fstore');
+    user = newUser;
     try {
       if (Services().firebase.isEnabled &&
           kFluxStoreMV.contains(serverConfig['type'])) {
-        Services().firebase.saveUserToFirestore(user: user);
+        Services().firebase.saveUserToFirestore(user: newUser);
       }
 
       // save to Preference
@@ -175,34 +178,55 @@ class UserModel with ChangeNotifier {
       // save the user Info as local storage
       final ready = await storage.ready;
       if (ready) {
-        await storage.setItem(kLocalKey['userInfo']!, user);
-        delegate?.onLoaded(user);
+        print("Saved new user info to local storage ${newUser?.lastName ?? ""}");
+        await storage.setItem(kLocalKey['userInfo']!, newUser);
+        delegate?.onLoaded(newUser);
       }
     } catch (err) {
       printLog(err);
     }
   }
 
+  int getUserRetries = 0;
+
   Future<void> getUser() async {
+    print("getting user attempt ${getUserRetries}");
     final storage = LocalStorage('fstore');
     try {
       final ready = await storage.ready;
-
+      if(!ready && getUserRetries < 10){
+        await Future.delayed(const Duration(milliseconds: 500));
+        getUserRetries += 1;
+        getUser();
+      }
+      if(!ready && getUserRetries >= 10){
+        print("cant get user after 10 retries");
+      }
       if (ready) {
         final json = storage.getItem(kLocalKey['userInfo']!);
+        print("The json we get from local ${json}");
         if (json != null) {
+          print("The json we got from local ${json}");
           user = User.fromLocalJson(json);
+          print("received user from local ${user?.lastName ?? ""}");
           loggedIn = true;
-          final userInfo = await _service.api.getUserInfo(user!.cookie);
-          if (userInfo != null) {
-            userInfo.isSocial = user!.isSocial;
-            user = userInfo;
+          if(user == null){
+            final userInfo = await _service.api.getUserInfo(user!.cookie);
+            print("received user from server ${user?.lastName ?? ""}");
+            if (userInfo != null) {
+              userInfo.isSocial = user!.isSocial;
+              user = userInfo;
+            }
+          }
+          if(user != null){
+            updateUser(user!);
           }
           delegate?.onLoaded(user);
           notifyListeners();
         }
       }
     } catch (err) {
+      print("We got error while getting user");
       printLog(err);
     }
   }

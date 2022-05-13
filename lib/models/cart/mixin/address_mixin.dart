@@ -38,21 +38,26 @@ mixin AddressMixin on CartMixin, ChangeNotifier {
       final ready = await storage.ready;
       if (ready) {
         final json = storage.getItem(kLocalKey['shippingAddress']!);
+        print("received useraddress from local ${json}");
         if (json != null) {
           return Address.fromLocalJson(json);
         } else {
           final userJson = storage.getItem(kLocalKey['userInfo']!);
+          print("received useraddress from userinfo ${userJson}");
 
           if (userJson != null) {
             var user = await Services().api.getUserInfo(userJson['cookie']);
+            print('received useraddress from local ${user?.shipping?.toJson()}');
+
             if (user != null) {
               user.isSocial = userJson['isSocial'] ?? false;
             } else {
               user = User.fromLocalJson(userJson);
             }
-
-            if (user.billing == null) {
+            print("received useraddress billing ${user.billing?.address1}");
+            if (user.billing == null || true) {
               final info = await Services().api.getCustomerInfo(user.id)!;
+              print('received useraddress from customerinfo ${info}');
               if (info['billing'] != null) {
                 return info['billing'];
               }

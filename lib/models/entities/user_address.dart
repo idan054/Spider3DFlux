@@ -9,6 +9,20 @@ class Shipping {
   String? country;
   String? state;
 
+  Map<String, dynamic> toJson(){
+    return {
+      "first_name" : firstName,
+      "last_name" : lastName,
+      "company" : company,
+      "address_1" : address1,
+      "address_2" : address2,
+      "city" : city,
+      "postcode" : postCode,
+      "country" : country,
+      "state" : state
+    };
+  }
+
   Shipping.fromJson(Map<String, dynamic> json) {
     try {
       firstName = json['first_name'];

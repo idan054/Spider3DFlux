@@ -9,8 +9,10 @@ import '../../services/index.dart';
 enum UserUpdateState { loading, loaded }
 
 class UserUpdateModel extends ChangeNotifier {
+
   var state = UserUpdateState.loaded;
   final _service = Services();
+
   TextEditingController userEmail = TextEditingController();
   TextEditingController userPassword = TextEditingController();
   TextEditingController userDisplayName = TextEditingController();
@@ -30,6 +32,7 @@ class UserUpdateModel extends ChangeNotifier {
 
   dynamic avatar;
   final User? _user;
+
   UserUpdateModel(this._user) {
     _initAllController();
   }

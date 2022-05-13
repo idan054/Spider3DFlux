@@ -150,32 +150,32 @@ class _HomeLayoutState extends State<HomeLayout> {
     );
   }
 
-  void subscribeToAuthEvents(context) async {
-    FirebaseServices().auth?.idTokenChanges().listen((event) async {
-      if(event == null){
-        if(await UserModel().isLogin()) {
-          print("user will be logged out");
-          Navigator.of(
-            App.fluxStoreNavigatorKey.currentContext!,
-          ).pushNamedAndRemoveUntil(
-            RouteList.login,
-                (route) => false,
-          );
-          await UserModel().onTapLogout(context);
-          print('given context is ${App.fluxStoreNavigatorKey.currentContext}');
-        }
-      }
-      else {
-        print("user will be logged in ${event.email ?? ""}");
-      }
-    });
-  }
+  // void subscribeToAuthEvents(context) async {
+  //   FirebaseServices().auth?.idTokenChanges().listen((event) async {
+  //     if(event == null){
+  //       if(await UserModel().isLogin()) {
+  //         print("user will be logged out");
+  //         Navigator.of(
+  //           App.fluxStoreNavigatorKey.currentContext!,
+  //         ).pushNamedAndRemoveUntil(
+  //           RouteList.login,
+  //               (route) => false,
+  //         );
+  //         await UserModel().onTapLogout(context);
+  //         print('given context is ${App.fluxStoreNavigatorKey.currentContext}');
+  //       }
+  //     }
+  //     else {
+  //       print("user will be logged in ${event.email ?? ""}");
+  //     }
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
     if (widget.configs == null) return Container();
 
-    subscribeToAuthEvents(context);
+    // subscribeToAuthEvents(context);
 
     ErrorWidget.builder = (error) {
       if (kReleaseMode) {

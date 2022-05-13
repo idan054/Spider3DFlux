@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import '../../common/constants.dart' show printLog;
 import '../../common/tools.dart';
 import '../../generated/l10n.dart';
+import '../../models/cart/cart_base.dart';
 import '../../models/entities/user.dart';
 import '../../models/user_model.dart';
 import '../../services/index.dart';
@@ -26,9 +27,10 @@ class _UserUpdateScreenState extends State<UserUpdateWooScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<UserModel>(context, listen: false);
+    final userModel = Provider.of<UserModel>(context, listen: false);
+    print("on update screen user we have is ${userModel.user?.shipping?.address1 ?? ""}");
     return ChangeNotifierProvider<UserUpdateModel>(
-      create: (_) => UserUpdateModel(user.user),
+      create: (_) => UserUpdateModel(userModel.user),
       lazy: false,
       child: Scaffold(
         key: _scaffoldKey,
@@ -50,15 +52,35 @@ class _UserUpdateScreenState extends State<UserUpdateWooScreen> {
                     content: Text('Update Successfully!'),
                     duration: Duration(seconds: 2),
                   ));
+
+                  // value['displayname'] = value['display_name'];
+                  // value['firstName'] = value['first_name'];
+                  // value['lastName'] = value['last_name'];
+                  // value['shipping'] = {};
+                  // value['shipping']['address_1'] = value['shipping_address_1'];
+                  // value['shipping']['address_2'] = value['shipping_address_2'];
+                  // value['shipping']['city'] = value['shipping_city'];
+                  // value['shipping']['company'] = value['shipping_company'];
+                  // value['shipping']['country'] = value['shipping_country'];
+                  // value['shipping']['state'] = value['shipping_state'];
+                  // value['shipping']['postcode'] = value['shipping_postcode'];
+
+                  print("the value of user to be saved is ${value}");
+
+                  User? updatedUser;
+
                   if (Config().isListingType) {
-                    user.user =
+                    updatedUser =
                         User.fromListingJson(value as Map<String, dynamic>);
                   } else {
-                    user.user = User.fromAuthUser(
-                        value as Map<String, dynamic>, user.user!.cookie);
+                    print("fetching user from auth user");
+                    updatedUser = User.fromAuthUser(
+                        value as Map<String, dynamic>, userModel.user!.cookie);
                   }
 
-                  user.saveUser(user.user);
+                  // print('Saving user ${updatedUser.toJson() ?? ""}');
+                  userModel.saveUser(updatedUser);
+
                   Future.delayed(const Duration(seconds: 2)).then((value) {
                     if (mounted) {
                       try {

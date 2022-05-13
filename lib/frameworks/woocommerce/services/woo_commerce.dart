@@ -1642,6 +1642,12 @@ class WooCommerce extends BaseServices {
         billing.lastName =
         billing.lastName!.isEmpty ? address.lastName : billing.lastName;
         billing.email = billing.email!.isEmpty ? address.email : billing.email;
+        billing.street =
+        billing.street!.isEmpty ? address.street : billing.street;
+        billing.phoneNumber =
+        billing.phoneNumber!.isEmpty ? address.phoneNumber : billing.phoneNumber;
+        billing.city =
+        billing.city!.isEmpty ? address.city : billing.city;
         if (billing.country!.isEmpty) {
           billing.country = kPaymentConfig['DefaultCountryISOCode'];
         }
