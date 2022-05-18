@@ -1,5 +1,5 @@
 {
- "bannerImage_UpdatedAt": "18/05/2022 11:46:50",
+ "bannerImage_UpdatedAt": "18/05/2022 11:47:13",
  "HorizonLayout": [
   {
    "layout": "logo",
@@ -29,11 +29,6 @@
     {
      "product": "25056",
      "image": "https://i.imgur.com/84ySdG3.jpg",
-     "padding": 15.0
-    },
-    {
-     "product": "44444",
-     "image": "https://i0.wp.com/www.spider3d.co.il/wp-content/uploads/2021/08/anycubic-wash-cure-plus-machine.jpg?resize=600%2C600&ssl=1",
      "padding": 15.0
     }
    ]
