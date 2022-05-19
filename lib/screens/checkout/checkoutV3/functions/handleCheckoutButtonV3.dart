@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fstore/common/config.dart';
 
@@ -127,15 +128,15 @@ Future<String> checkCheckoutButtonV3(context, CartModel cartModel) async {
 
   Future<bool> _userLoggedOk() async {
     print('_userLoggedOk()...');
-    if (cartModel.user?.loggedIn == null || cartModel.user?.loggedIn == false) {
+    if (FirebaseAuth.instance.currentUser == null) {
       print('Something Wrong with _userLoggedOk...');
       // await UserModel().logout();
-      // Navigator.of(
-      //   App.fluxStoreNavigatorKey.currentContext!,
-      // ).pushNamedAndRemoveUntil(
-      //   RouteList.login,
-      //       (route) => false,
-      // );
+      Navigator.of(
+        App.fluxStoreNavigatorKey.currentContext!,
+      ).pushNamedAndRemoveUntil(
+        RouteList.login,
+            (route) => false,
+      );
       return false;
     }
 
