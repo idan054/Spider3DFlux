@@ -130,12 +130,12 @@ Future<String> checkCheckoutButtonV3(context, CartModel cartModel) async {
     if (cartModel.user?.loggedIn == null || cartModel.user?.loggedIn == false) {
       print('Something Wrong with _userLoggedOk...');
       // await UserModel().logout();
-      Navigator.of(
-        App.fluxStoreNavigatorKey.currentContext!,
-      ).pushNamedAndRemoveUntil(
-        RouteList.login,
-            (route) => false,
-      );
+      // Navigator.of(
+      //   App.fluxStoreNavigatorKey.currentContext!,
+      // ).pushNamedAndRemoveUntil(
+      //   RouteList.login,
+      //       (route) => false,
+      // );
       return false;
     }
 
