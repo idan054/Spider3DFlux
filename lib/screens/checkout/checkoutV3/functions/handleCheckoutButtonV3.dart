@@ -167,7 +167,7 @@ Future<String> checkCheckoutButtonV3(context, CartModel cartModel) async {
 
   await _userLoggedOk() ? null : errorNotes += 'נא התחבר בעמוד הפרופיל \n';
 
-  Services().firebase.reloadUser();
+  // await Services().firebase.reloadUser();
 
   return errorNotes;
 }
