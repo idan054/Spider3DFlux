@@ -155,51 +155,51 @@ class _ThingiPageState extends State<ThingiPage> {
           children: [
             showSearch
                 ? Flexible(
-                    flex: 14,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.all(Radius.circular(4)),
-                      child: Container(
-                        color: kGrey200,
-                        child: TextField(
-                          textAlign: TextAlign.right,
-                          // textDirection: TextDirection.rtl,
-                          decoration: InputDecoration(
-                            contentPadding:
-                                EdgeInsets.symmetric(horizontal: 15.0),
-                            hintText: 'חפש מודלים בעברית..',
-                            hintStyle: GoogleFonts.heebo(
-                                // fontWeight: FontWeight.bold,
-                                color:
-                                    Theme.of(context).colorScheme.onBackground,
-                                fontSize: 16),
-                            enabledBorder: InputBorder.none,
-                            border: InputBorder.none,
-                          ),
-
-                          controller: searchController,
-                          onSubmitted: (keyword) =>
-                              searchThing(), // based controller.text
-                        ),
-                      ),
+              flex: 14,
+              child: ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(4)),
+                child: Container(
+                  color: kGrey200,
+                  child: TextField(
+                    textAlign: TextAlign.right,
+                    // textDirection: TextDirection.rtl,
+                    decoration: InputDecoration(
+                      contentPadding:
+                      EdgeInsets.symmetric(horizontal: 15.0),
+                      hintText: 'חפש מודלים בעברית..',
+                      hintStyle: GoogleFonts.heebo(
+                        // fontWeight: FontWeight.bold,
+                          color:
+                          Theme.of(context).colorScheme.onBackground,
+                          fontSize: 16),
+                      enabledBorder: InputBorder.none,
+                      border: InputBorder.none,
                     ),
-                  )
+
+                    controller: searchController,
+                    onSubmitted: (keyword) =>
+                        searchThing(), // based controller.text
+                  ),
+                ),
+              ),
+            )
                 : Container(
-                    alignment: Alignment.bottomRight,
-                    child: Text(
-                        'רעיונות בשבילך'
-                        // 'הדפס משהו..'
-                        ,
-                        // textDirection: TextDirection.rtl,
-                        /*               style: TextStyle(
+              alignment: Alignment.bottomRight,
+              child: Text(
+                  'רעיונות בשבילך'
+                  // 'הדפס משהו..'
+                  ,
+                  // textDirection: TextDirection.rtl,
+                  /*               style: TextStyle(
                             fontWeight: FontWeight.w800,
                             color: Theme.of(context).colorScheme.onBackground,
                             fontSize: 25)*/
 
-                        style: GoogleFonts.heebo(
-                            fontWeight: FontWeight.bold,
-                            color: Theme.of(context).colorScheme.onBackground,
-                            fontSize: 25)),
-                  ),
+                  style: GoogleFonts.heebo(
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.onBackground,
+                      fontSize: 25)),
+            ),
             const Spacer(
               flex: 1,
             ),
@@ -229,15 +229,13 @@ class _ThingiPageState extends State<ThingiPage> {
               future: setFeedBy,
               builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
                 if (snapshot.hasData) {
-
+                  // print(snapshot.data);
                   List<dynamic> thing_details = snapshot.data['hits'];
-                  print('thing_details');
-                  print(thing_details);
-                  if(thing_details.isEmpty) getThingiToken();
-
+                  // print('thing_details');
+                  // print(thing_details);
                   return GridView.builder(
                       gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
+                      const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                       ),
                       itemCount: thing_details.length,
