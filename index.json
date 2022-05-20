@@ -1,5 +1,5 @@
 {
- "bannerImage_UpdatedAt": "19/05/2022 10:58:27",
+ "bannerImage_UpdatedAt": "20/05/2022 09:28:14",
  "HorizonLayout": [
   {
    "layout": "logo",
@@ -24,11 +24,6 @@
     {
      "category": "5707",
      "image": "https://www.spider3d.co.il/wp-content/uploads/2022/04/Anycubic-129.jpg",
-     "padding": 15.0
-    },
-    {
-     "product": "25056",
-     "image": "https://i.imgur.com/84ySdG3.jpg",
      "padding": 15.0
     }
    ]
