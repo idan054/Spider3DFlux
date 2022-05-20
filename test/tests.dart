@@ -48,6 +48,18 @@ Future<String?> getThingiToken() async {
     users_usage = user.get('users_usage');
     print(
         '--------------\nusers_usage: $users_usage | Token: $token | doc id: $id');
+    if (users_usage == 0) {
+      selectedToken = token;
+      await thingi
+          .doc(id)
+          .update({'users_usage': 1})
+          .then((value) => print('users_usage ++'))
+          .catchError((error) => print('Failed to update user: $error'));
+
+      print(
+          'firestore users_usage reset to 0 \n--------------');
+      // return selectedToken;
+    }
     if (users_usage < 10) {
       selectedToken = token;
       await thingi

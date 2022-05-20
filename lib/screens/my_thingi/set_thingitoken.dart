@@ -26,7 +26,7 @@ Future<String?> set_thingiToken() async {
   // Map<String, Object> values = <String, Object>{'user_token': 'Mock_XYZ'};
   // Map<String, Object> values = <String, Object>{};
   // SharedPreferences.setMockInitialValues(values);
-  SharedPreferences prefs = await SharedPreferences.getInstance();
+  var prefs = await SharedPreferences.getInstance();
   // prefs.clear();
   // await storage.clear();
 
@@ -85,7 +85,7 @@ Future<List> getThingiToken() async {
   } else {
     var new_token = await FirebaseFirestore.instance
         .collection('thingi')
-        .where('users_usage', whereIn: [1])
+        .where('users_usage', whereIn: [0, 1])
         .limit(1)
         .get();
     print('use new_token to set var user');
@@ -122,6 +122,59 @@ Future<List> getThingiToken() async {
   Constants.thingiToken = selectedToken;
   Constants.thingiToken_counter = '$users_usage';
   return [selectedToken, users_usage];
+}
+
+//~ Run this to reset the thingi tokens
+// rename to getThingiToken()
+Future<String?> getThingiTokenReset() async {
+// 1. Looking for token with users (usage) Less than 10
+// 2. Found: Notify and add + 1 to users (usage), return  selectedToken
+// 2. Not found: Notify, return  selectedToken as null
+
+  var thingi = FirebaseFirestore.instance.collection('thingi');
+  String? selectedToken;
+
+  String? id;
+  String token;
+  int users_usage = 0;
+  var _users = await thingi.get();
+  print('_users.docs.length');
+  print(_users.docs.length);
+  print(_users.docs.first.data());
+  for (var user in _users.docs) {
+    // print(user.data());
+    id = user.id;
+    token = user.get('Token');
+    users_usage = user.get('users_usage');
+    print(
+        '--------------\nusers_usage: $users_usage | Token: $token | doc id: $id');
+    if (users_usage == 0) {
+      selectedToken = token;
+      await thingi
+          .doc(id)
+          .update({'users_usage': 1})
+          .then((value) => print('users_usage ++'))
+          .catchError((error) => print('Failed to update user: $error'));
+
+      print(
+          'firestore users_usage reset to 0 \n--------------');
+      // return selectedToken;
+    }
+/*    if (users_usage < 10) {
+      selectedToken = token;
+      await thingi
+          .doc(id)
+          .update({'users_usage': users_usage + 1})
+          .then((value) => print('users_usage ++'))
+          .catchError((error) => print('Failed to update user: $error'));
+
+      print(
+          '${users_usage + 1} / 10 selectedToken: $selectedToken (Success) \n--------------');
+      return selectedToken;
+    }*/
+  }
+  print('selectedToken = $selectedToken (Full)');
+  return selectedToken;
 }
 
 // Constants.thingiToken = await set_thingiToken();
