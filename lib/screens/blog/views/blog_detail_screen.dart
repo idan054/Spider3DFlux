@@ -10,6 +10,8 @@ import '../../../widgets/blog/detailed_blog_half_image.dart';
 import '../../../widgets/blog/detailed_blog_quarter_image.dart';
 import '../../../widgets/blog/detailed_blog_view.dart';
 import '../models/list_blog_model.dart';
+import '../../../generated/l10n.dart';
+
 
 class BlogDetailScreen extends StatefulWidget {
   final Blog blog;
@@ -31,18 +33,42 @@ class _BlogDetailScreenState extends State<BlogDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ListBlogModel>(builder: (context, model, child) {
-      final listBlog = model.blogs!;
-      controller ??= PageController(initialPage: listBlog.indexOf(widget.blog));
-      return PageView.builder(
-        itemCount: listBlog.length,
-        controller: controller,
-        physics: const ClampingScrollPhysics(),
-        itemBuilder: (context, index) {
-          return getDetailScreen(listBlog[index]);
-        },
-      );
-    });
+
+    final model = Provider.of<ListBlogModel>(context, listen: false);
+
+    return Scaffold(
+      appBar: !kIsWeb
+          ? AppBar(
+        backgroundColor: kColorSpiderRed,
+        elevation: 0.1,
+        title: Text(
+          S.of(context).blog,
+          style: const TextStyle(color: Colors.white),
+        ),
+        leading: Center(
+          child: GestureDetector(
+            onTap: () => Navigator.pop(context),
+            child: const Icon(
+              Icons.arrow_back_ios,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      )
+          : null,
+      body: Consumer<ListBlogModel>(builder: (context, model, child) {
+        final listBlog = model.blogs!;
+        controller ??= PageController(initialPage: listBlog.indexOf(widget.blog));
+        return PageView.builder(
+          itemCount: listBlog.length,
+          controller: controller,
+          physics: const ClampingScrollPhysics(),
+          itemBuilder: (context, index) {
+            return getDetailScreen(listBlog[index]);
+          },
+        );
+      }),
+    );
   }
 
   Widget getDetailScreen(Blog blog) {

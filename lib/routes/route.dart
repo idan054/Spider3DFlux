@@ -12,6 +12,7 @@ import '../models/entities/blog.dart';
 import '../models/index.dart' show Product, SearchModel, User;
 import '../modules/dynamic_layout/config/app_config.dart';
 import '../modules/dynamic_layout/search/home_search_page.dart';
+import '../screens/blog/views/widgets/blog_list_item.dart';
 import '../screens/index.dart';
 import '../screens/order_history/index.dart';
 import '../screens/pages/static_page.dart';
@@ -102,9 +103,9 @@ class Routes {
           CategorySearch(),
         );
       case RouteList.detailBlog:
-        final blog = settings.arguments;
-        if (blog is Blog) {
-          return _buildRoute(settings, (_) => BlogDetailScreen(blog: blog));
+        final wrapper = settings.arguments;
+        if (wrapper is Blog) {
+          return _buildRoute(settings, (_) => BlogDetailScreen(blog: wrapper));
         }
         return _errorRoute();
       case RouteList.orderDetail:

@@ -265,17 +265,17 @@ class FirebaseServices extends BaseFirebaseServices {
     }
   }
 
-  Future<bool> reloadUser() async {
-    print("reloading user");
-    try{
-      await FirebaseServices().auth?.currentUser?.getIdToken(true);
-    } catch(e){
-      print("logging out the user");
-      await appUser.UserModel().logout();
-      return false;
-    } finally{
-      print("user intact");
-    }
-    return true;
-  }
+  // Future<bool> reloadUser() async {
+  //   print("reloading user");
+  //   try{
+  //     await FirebaseServices().auth?.currentUser?.getIdToken(true);
+  //   } catch(e){
+  //     print("logging out the user");
+  //     await appUser.UserModel().logout();
+  //     return false;
+  //   } finally{
+  //     print("user intact");
+  //   }
+  //   return true;
+  // }
 }

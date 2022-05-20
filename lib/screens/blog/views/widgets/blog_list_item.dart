@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:html/parser.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../common/constants.dart' show RouteList;
 import '../../../../common/tools.dart';
 import '../../../../models/entities/blog.dart';
 import '../../../../routes/flux_navigate.dart';
+import '../../models/list_blog_model.dart';
 
 class BlogListItem extends StatelessWidget {
   final Blog blog;
@@ -17,10 +19,13 @@ class BlogListItem extends StatelessWidget {
     if (blog.id == null) return const SizedBox();
 
     return InkWell(
-      onTap: () => FluxNavigate.pushNamed(
-        RouteList.detailBlog,
-        arguments: blog,
-      ),
+      onTap: () {
+        Navigator.of(context).pushNamed(RouteList.detailBlog, arguments: blog);
+        // FluxNavigate.pushNamed(
+        //   RouteList.detailBlog,
+        //   arguments: blog,
+        // );
+      },
       child: Container(
         padding: const EdgeInsets.only(right: 15, left: 15),
         child: Column(

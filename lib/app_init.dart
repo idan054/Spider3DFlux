@@ -61,11 +61,11 @@ class _AppInitState extends BaseScreen<AppInit> {
 
   /// Check if the App is Login
   bool checkLogin() {
-    FirebaseServices().reloadUser().then((value) => {
-      if(!value){
-        Navigator.of(context).pushReplacementNamed(RouteList.login)
-      }
-    });
+    // FirebaseServices().reloadUser().then((value) => {
+    //   if(!value){
+    //     Navigator.of(context).pushReplacementNamed(RouteList.login)
+    //   }
+    // });
     final hasLogin =
         (injector<SharedPreferences>().getBool(LocalStorageKey.loggedIn) ?? false);
     return hasLogin;
