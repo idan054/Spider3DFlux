@@ -1,5 +1,5 @@
 {
- "bannerImage_UpdatedAt": "23/05/2022 15:22:20",
+ "bannerImage_UpdatedAt": "24/05/2022 15:01:19",
  "HorizonLayout": [
   {
    "layout": "logo",
@@ -22,13 +22,13 @@
    "radius": 8,
    "items": [
     {
-     "category": "5707",
-     "image": "https://www.spider3d.co.il/wp-content/uploads/2022/05/Anycubic-129-scaled.jpg?TEST1",
+     "category": "5537",
+     "image": "https://www.spider3d.co.il/wp-content/uploads/2022/05/silk-95-app-scaled.jpg",
      "padding": 15.0
     },
     {
-     "category": "5537",
-     "image": "https://www.spider3d.co.il/wp-content/uploads/2022/05/silk-95-app-scaled.jpg",
+     "category": "5707",
+     "image": "https://www.spider3d.co.il/wp-content/uploads/2022/05/Anycubic-129-scaled.jpg?TEST1",
      "padding": 15.0
     }
    ]
