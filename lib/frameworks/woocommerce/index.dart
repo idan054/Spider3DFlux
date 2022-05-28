@@ -230,6 +230,7 @@ class WooWidget extends BaseFrameworks
     Provider.of<CartModel>(context, listen: false)
         .setPaymentMethod(paymentMethod);
 
+    print("payment method ${paymentMethod?.id}");
     if (paymentMethod!.id == 'cod') {
       /// Cash on delivery
       createOrder(context,
@@ -246,9 +247,11 @@ class WooWidget extends BaseFrameworks
 
     /// iCredit (Any time paymentMethod.id != 'cod')
     final user = Provider.of<UserModel>(context, listen: false).user;
+    print("received user is ${user}");
     var params =
         Order().toJson(cartModel!, user != null ? user.id : null, true);
     params['token'] = user != null ? user.cookie : null;
+    print("received params is ${params}");
 
     // 2. Start iCredit payment, change status to Completed on Success
     makePaymentWebView(context, params, onLoading, success, error);
@@ -275,13 +278,12 @@ class WooWidget extends BaseFrameworks
 
       // onLoading(true);
       // 1. Create order with status Pending AKA ממתין לתשלום
-      Order? order;
-      await createOrder(context,
+      var order = await createOrder(context,
           bacs: true, onLoading: onLoading, success:
               (Order _order){
             // webView_success;
             print('createOrder $_order');
-              order = _order;
+              // order = _order;
               },
           error: error);
 
@@ -292,8 +294,8 @@ class WooWidget extends BaseFrameworks
             builder: (context) => PaymentWebview(
                 url: url,
                 onFinish: (String? status) async {
-                  print('makePaymentWebView() - onFinish');
-                  print('statuss:$status');
+                  // print('makePaymentWebView() - onFinish');
+                  // print('statuss:$status');
                   if(status != null){
 
                     // await createOrder(context,
@@ -302,26 +304,28 @@ class WooWidget extends BaseFrameworks
 
                     // webView_success;
                     final userModel = Provider.of<UserModel>(context, listen: false);
-                    print('order?.id ${order?.id}');
                     await Services().api.updateOrder('${order?.id}',
                         status: 'processing',
                         token: userModel.user != null ? userModel.user!.cookie : null);
                         // return;
 
-                    print('------');
-                    print('placeOrder Success:');
-                    print(order);
-                    Provider.of<CartModel>(context, listen: false).clearCart();
-                    Provider.of<CartModel>(context, listen: false).changeBillingStatus('Stop');
-                    // Clear ShippingIndex & reset paymentIndex
-                    Provider.of<CheckoutProviderV3>(context, listen: false).changeShippingIndex(0);
-                    Provider.of<CheckoutProviderV3>(context, listen: false).changePaymentIndex(0);
                     await Navigator.push(context,
                       MaterialPageRoute(
                           builder: (context) => SuccessScreen(
                             order: Order(number: order?.number),
                           )),
                     );
+
+                    print('------');
+                    print('placeOrder Success:');
+                    print(order);
+
+                    Provider.of<CartModel>(context, listen: false).clearCart();
+                    Provider.of<CartModel>(context, listen: false).changeBillingStatus('Stop');
+                    // Clear ShippingIndex & reset paymentIndex
+                    Provider.of<CheckoutProviderV3>(context, listen: false).changeShippingIndex(0);
+                    Provider.of<CheckoutProviderV3>(context, listen: false).changePaymentIndex(0);
+
                   }
                 })),
       );

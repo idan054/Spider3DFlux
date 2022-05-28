@@ -346,8 +346,7 @@ class _LoginPageState extends BaseScreen<LoginScreen>
                                             ),
                                           ),
                                         const SizedBox(height: 5.0),
-                                        if (kLoginSetting['showGoogleLogin'] &&
-                                            !isAvailableApple) // Android Only
+                                        if (kLoginSetting['showGoogleLogin']) // Android Only
                                           InkWell(
                                             onTap: () => _loginGoogle(context),
                                             // _failMessage('', context),

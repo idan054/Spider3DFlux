@@ -150,14 +150,13 @@ class PaymentWebviewState extends BaseScreen<PaymentWebview> {
               // var url = await _controller.currentUrl() ?? '';
               // succeedRedirect(url);
             },
-            onPageStarted: (url) => succeedRedirect(url), // Every new page.
+            onPageStarted: succeedRedirect, // Every new page.
             onWebViewCreated: (controller) async { // On first time.
 
 
               // Redirect when success = https://www.spider3d.co.il/תודה/ - https://www.spider3d.co.il/%D7%AA%D7%95%D7%93%D7%94/
               var url = await controller.currentUrl() ?? '';
               print('url $url');
-              print('FUVCKCCKKK K2');
 
               setState(() {
                 isLoading = true;
@@ -169,9 +168,7 @@ class PaymentWebviewState extends BaseScreen<PaymentWebview> {
 
               print('onWebViewCreated');
               await controller.getTitle();
-              print('${addressModel?.cardExpiryDate}');
-              print('${addressModel?.cardExpiryDate?.substring(0, 2)}');
-              print('${addressModel?.cardExpiryDate?.substring(3, 5)}');
+
 
 
               /*        await _controller.evaluateJavascript(
@@ -185,8 +182,11 @@ class PaymentWebviewState extends BaseScreen<PaymentWebview> {
                   'console.log(mainArray);');*/
             },
             onPageFinished: (url) async {
+              succeedRedirect(url);
+
               setState(() => isLoading = false);
               print('Current url $url');
+
 
               if (url.contains('icredit')) {
                 await _controller.evaluateJavascript(
@@ -220,7 +220,7 @@ class PaymentWebviewState extends BaseScreen<PaymentWebview> {
               }
             },
           ),
-          isLoading ? Center(child: kLoadingWidget(context)) : Container()
+          // isLoading ? Center(child: kLoadingWidget(context)) : Container()
         ],
       ),
     );
@@ -257,17 +257,18 @@ class PaymentWebviewState extends BaseScreen<PaymentWebview> {
      */
   }
 
+  bool success = false;
   void succeedRedirect(url) {
-      print('Checking if url is succeed url: $url');
-      print('firstSucceedRedirect $firstSucceedRedirect');
+      // print('Checking if url is succeed url: $url');
+      // print('firstSucceedRedirect $firstSucceedRedirect');
     // if(firstSucceedRedirect) {
-      print('Started');
-      setState(() => firstSucceedRedirect = false);
-      if (url.contains('%D7%AA%D7%95%D7%93%D7%94') ||
-          url.contains('spider3d') ||
+    //   print('Started');
+      if ((url.contains('%D7%AA%D7%95%D7%93%D7%94') ||
+          url.contains('spider') ||
           // url.contains('icredit') && kDebugMode || // For Tests ONLY! (AutoRedirect)
-          url.contains('תודה')) {
-        print('Payment done succefully! Redirect..');
+          url.contains('תודה') ) && success == false) {
+        success = true;
+        // print('Payment done succefully! Redirect..');
         widget.onFinish!('Success');
         // Navigator.of(context).pop();
 /*      Navigator.of(context)
