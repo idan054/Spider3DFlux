@@ -130,6 +130,7 @@ class PaymentWebviewState extends BaseScreen<PaymentWebview> {
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
               widget.onFinish!(null);
+              Provider.of<CartModel>(context, listen: false).changeBillingStatus('Stop');
               Navigator.of(context).pop();
 
               if (widget.onClose != null) {

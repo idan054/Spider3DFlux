@@ -16,8 +16,6 @@ mixin CartMixin on ChangeNotifier {
   double taxesTotal = 0;
   List<Tax> taxes = [];
   double rewardTotal = 0;
-
-
   PaymentMethod? paymentMethod;
 
   String? notes;
