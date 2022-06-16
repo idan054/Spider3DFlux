@@ -2,6 +2,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fstore/common/config.dart';
+import 'package:fstore/common/theme/fonts.dart';
 import 'package:fstore/frameworks/woocommerce/services/woo_commerce.dart';
 import 'package:fstore/models/cart/cart_base.dart';
 import 'package:fstore/screens/checkout/webview_checkout_success_screen.dart';
@@ -40,11 +41,13 @@ class PaymentWebview extends StatefulWidget {
 }
 
 class PaymentWebviewState extends BaseScreen<PaymentWebview> {
+
   /*
   @override
   Future<void> afterFirstLayout(BuildContext context) async {
     initWebView();
   }
+
 
   void initWebView() {
     final flutterWebviewPlugin = FlutterWebviewPlugin();
@@ -125,14 +128,12 @@ class PaymentWebviewState extends BaseScreen<PaymentWebview> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('תשלום מתבצע, אנא המתן...'),
+        title: const Text('תשלום מתבצע'),
         leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
               widget.onFinish!(null);
-              Provider.of<CartModel>(context, listen: false).changeBillingStatus('Stop');
               Navigator.of(context).pop();
-
               if (widget.onClose != null) {
                 widget.onClose!();
               }
@@ -221,6 +222,17 @@ class PaymentWebviewState extends BaseScreen<PaymentWebview> {
               }
             },
           ),
+          Container(
+            color: Colors.black26,
+            child: Center(child: ClipRRect(
+              borderRadius: BorderRadius.circular(6),
+              child: Container(
+                  width: 100,
+                  height: 100,
+                  color: Theme.of(context).backgroundColor,
+                  child: kLoadingWidget(context)),
+            )),
+          )
           // isLoading ? Center(child: kLoadingWidget(context)) : Container()
         ],
       ),
@@ -278,5 +290,13 @@ class PaymentWebviewState extends BaseScreen<PaymentWebview> {
         return;
       // }
     }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    final cartModel = Provider.of<CartModel>(context, listen: false);
+    cartModel.changeBillingStatus('Stop');
+    super.initState();
   }
 }

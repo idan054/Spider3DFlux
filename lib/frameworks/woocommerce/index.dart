@@ -294,6 +294,9 @@ class WooWidget extends BaseFrameworks
             builder: (context) => PaymentWebview(
                 url: url,
                 onFinish: (String? status) async {
+                  final userModel = Provider.of<UserModel>(context, listen: false);
+                  final cartModel = Provider.of<CartModel>(context, listen: false);
+                  cartModel.changeBillingStatus('Stop');
                   // print('makePaymentWebView() - onFinish');
                   // print('statuss:$status');
                   if(status != null){
@@ -303,7 +306,7 @@ class WooWidget extends BaseFrameworks
                     // bacs: false, onLoading: onLoading, success: webView_success, error: error);
 
                     // webView_success;
-                    final userModel = Provider.of<UserModel>(context, listen: false);
+                    cartModel.clearCart();
                     await Services().api.updateOrder('${order?.id}',
                         status: 'processing',
                         token: userModel.user != null ? userModel.user!.cookie : null);
