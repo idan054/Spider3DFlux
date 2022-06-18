@@ -292,11 +292,4 @@ class PaymentWebviewState extends BaseScreen<PaymentWebview> {
     }
   }
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    final cartModel = Provider.of<CartModel>(context, listen: false);
-    cartModel.changeBillingStatus('Stop');
-    super.initState();
-  }
 }

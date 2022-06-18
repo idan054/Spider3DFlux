@@ -210,6 +210,7 @@ SnackBar errSnackBar(context, String errorNotes) {
 
 void handleCheckoutButton(context, CartModel cartModel, /*Function onFinish*/) async {
 
+
   void _placeOrder() {
     var isPaying = true;
 
@@ -244,7 +245,11 @@ void handleCheckoutButton(context, CartModel cartModel, /*Function onFinish*/) a
     // 3. Start payment and createOrder()
     // onFinish(status: 'Passed'); // A void that return value & set in the parent to use both values.
     print('Everything is ready for purchase!');
+
+    cartModel.myBillingStatus == 'Loading' ?
+      print('Already clicked!') : _placeOrder();
+
     cartModel.changeBillingStatus('Loading');
-    _placeOrder();
+
   }
 }

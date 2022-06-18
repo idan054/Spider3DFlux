@@ -10,6 +10,7 @@ class CheckoutButtonV3 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Consumer<CartModel>(
         builder: (context, cartModel, child) {
           print('Checkout button V3 rendered');

@@ -18,6 +18,9 @@ class CheckoutScreenV3 extends StatelessWidget {
   const CheckoutScreenV3({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final cartModel = Provider.of<CartModel>(context, listen: false);
+    cartModel.changeBillingStatus('Stop');
+
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(

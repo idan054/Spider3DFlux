@@ -91,8 +91,11 @@ class PaymentFormV3 extends StatelessWidget {
 
         /// Will not auto Complete for security reasons
         if (model.address?.cardExpiryDate != null) _cardExpiryDateController.text = '${model.address?.cardExpiryDate}';
-        if (model.address?.cardNumber != null) _cardNumberController.text = '${model.address?.cardNumber}';
-        if (model.address?.cardCvv != null) _cardCvvController.text = '${model.address?.cardCvv}';
+        if (model.address?.cardNumber != null) {
+        _cardNumberController.text =
+            '${model.address?.cardNumber.toString().substring(12, 16)} **** **** ****';
+      }
+      if (model.address?.cardCvv != null) _cardCvvController.text = '${model.address?.cardCvv}';
         if (model.address?.cardHolderId != null) _cardHolderIdController.text = '${model.address?.cardHolderId}';
 
         if (model.address?.cardHolderName != null) {
