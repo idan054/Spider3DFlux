@@ -28,12 +28,12 @@ if (flutterRoot == null) {
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
-    flutterVersionCode = '44100'
+    flutterVersionCode = '45000'
 }
 
 def flutterVersionName = localProperties.getProperty('flutter.versionName')
 if (flutterVersionName == null) {
-    flutterVersionName = '44.10.0 - Order creation issue resolved'
+    flutterVersionName = '45.00.0 - Rishon Letsion TO Yavne'
 }
 
 apply plugin: 'com.android.application'
