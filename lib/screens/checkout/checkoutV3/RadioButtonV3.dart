@@ -159,12 +159,12 @@ class CustomRadioButtonV3 extends StatelessWidget {
                   case 3:
                     shippingMethod = ShippingMethod(
                       title:
-                      'איסוף עצמי - לוקר ראשון לציון (קוד ופרטים ישלחו ב-SMS )',
+                      'איסוף עצמי - לוקר ביבנה (קוד ופרטים ישלחו ב-SMS )',
                       methodId: 'local_pickup',
                       cost: 0.0,
                       id: 'local_pickup:15',
                       methodTitle:
-                      'איסוף עצמי - לוקר ראשון לציון (קוד ופרטים ישלחו ב-SMS )',
+                      'איסוף עצמי - לוקר ביבנה (קוד ופרטים ישלחו ב-SMS )',
                       description: null,
                       classCost: null,
                       min_amount: null,
