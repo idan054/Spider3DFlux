@@ -267,6 +267,17 @@ class WooWidget extends BaseFrameworks
       // final paymentMethodModel = Provider.of<PaymentMethodModel>(context);
       // final order_details = provider.of<
 
+      // onLoading(true);
+      // 1. Create order with status Pending AKA ממתין לתשלום
+      var order = await createOrder(context,
+          bacs: true, onLoading: onLoading, success:
+              (Order _order){
+            // webView_success;
+            print('createOrder (BEFORE iCreditGetUrl) $_order');
+              // order = _order;
+              },
+          error: error);
+
       var url = await iCreditGetUrl(
           city: '${addressModel?.city}',
           street: '${addressModel?.street}',
@@ -274,18 +285,7 @@ class WooWidget extends BaseFrameworks
           email: '${addressModel?.email}',
           buyer_name: '${addressModel?.firstName}',
           total_price:
-          Provider.of<CartModel>(context, listen: false).getTotal());
-
-      // onLoading(true);
-      // 1. Create order with status Pending AKA ממתין לתשלום
-      var order = await createOrder(context,
-          bacs: true, onLoading: onLoading, success:
-              (Order _order){
-            // webView_success;
-            print('createOrder $_order');
-              // order = _order;
-              },
-          error: error);
+            Provider.of<CartModel>(context, listen: false).getTotal());
 
       // onLoading(false);
       await Navigator.push(

@@ -149,29 +149,24 @@ class PaymentWebviewState extends BaseScreen<PaymentWebview> {
             javascriptMode: JavascriptMode.unrestricted,
             initialUrl: checkoutMap['url'],
             onProgress: (progress) async {
-              // var url = await _controller.currentUrl() ?? '';
-              // succeedRedirect(url);
+              var url = await _controller.currentUrl() ?? '';
+              succeedRedirect(url); // if Based
             },
             onPageStarted: succeedRedirect, // Every new page.
             onWebViewCreated: (controller) async { // On first time.
 
-
               // Redirect when success = https://www.spider3d.co.il/תודה/ - https://www.spider3d.co.il/%D7%AA%D7%95%D7%93%D7%94/
               var url = await controller.currentUrl() ?? '';
               print('url $url');
+              succeedRedirect(url); // if Based
 
-              setState(() {
-                isLoading = true;
-              });
+              setState(() => isLoading = true);
               _controller = controller;;
-
               await controller
                        .evaluateJavascript('console.log("Print TEST by JS")');
 
               print('onWebViewCreated');
               await controller.getTitle();
-
-
 
               /*        await _controller.evaluateJavascript(
                   'var mainNodeList = document.getElementsByName("cardNum");'
@@ -184,7 +179,7 @@ class PaymentWebviewState extends BaseScreen<PaymentWebview> {
                   'console.log(mainArray);');*/
             },
             onPageFinished: (url) async {
-              succeedRedirect(url);
+              succeedRedirect(url); // if Based
 
               setState(() => isLoading = false);
               print('Current url $url');
