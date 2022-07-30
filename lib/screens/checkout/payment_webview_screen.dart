@@ -217,16 +217,19 @@ class PaymentWebviewState extends BaseScreen<PaymentWebview> {
               }
             },
           ),
-          Container(
-            color: Colors.black26,
-            child: Center(child: ClipRRect(
-              borderRadius: BorderRadius.circular(6),
-              child: Container(
-                  width: 100,
-                  height: 100,
-                  color: Theme.of(context).backgroundColor,
-                  child: kLoadingWidget(context)),
-            )),
+          Offstage(
+            offstage: true,
+            child: Container(
+              color: Colors.black26,
+              child: Center(child: ClipRRect(
+                borderRadius: BorderRadius.circular(6),
+                child: Container(
+                    width: 100,
+                    height: 100,
+                    color: Theme.of(context).backgroundColor,
+                    child: kLoadingWidget(context)),
+              )),
+            ),
           )
           // isLoading ? Center(child: kLoadingWidget(context)) : Container()
         ],

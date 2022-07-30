@@ -31,13 +31,13 @@ class MyCart extends StatefulWidget {
 
 List<Widget> createShoppingCartRows(CartModel model, BuildContext context) {
   return model.productsInCart.keys.map(
-        (key) {
+    (key) {
       var productId = Product.cleanProductID(key);
       var product = model.getProductById(productId);
 
       return ShoppingCartRow(
-        my_is_review_screen:
-        false, // My adjustments for review_screen.dart only
+        my_is_review_screen: false,
+        // My adjustments for review_screen.dart only
         product: product!,
         addonsOptions: model.productAddonsOptionsInCart[key],
         variation: model.getProductVariationById(key),
@@ -57,7 +57,7 @@ List<Widget> createShoppingCartRows(CartModel model, BuildContext context) {
             Future.delayed(
                 const Duration(milliseconds: 300),
                 // ignore: deprecated_member_use
-                    () => Scaffold.of(context).showSnackBar(snackBar));
+                () => Scaffold.of(context).showSnackBar(snackBar));
           }
         },
       );
@@ -65,11 +65,9 @@ List<Widget> createShoppingCartRows(CartModel model, BuildContext context) {
   ).toList();
 }
 
-
 class _MyCartState extends State<MyCart> with SingleTickerProviderStateMixin {
   bool isLoading = false;
   String errMsg = '';
-
 
   void _loginWithResult(BuildContext context) async {
     // final result = await Navigator.push(
@@ -113,27 +111,22 @@ class _MyCartState extends State<MyCart> with SingleTickerProviderStateMixin {
       floatingActionButton: Container(
         margin: const EdgeInsets.only(bottom: 20),
         child: FloatingActionButton.extended(
-          onPressed: cartModel.calculatingDiscount
-              ? null
-              : () {
-                  if(cartModel.totalCartQuantity > 0) {
-                      if (userModel.loggedIn) {
-                        MainTabControlDelegate.getInstance().changeTab('cart');
-                        onCheckout(cartModel);
-                     } else {
-                        Navigator.of(context).pushNamed(RouteList.login); }
-                  } else {
-                  MainTabControlDelegate.getInstance().changeTab('home');
-                 }
-
-                /*                // MainTabControlDelegate.getInstance().changeTab('checkout');
-                    // return;
-
-                  // cartModel.user?.email == null
-                  // FirebaseAuth.instance.currentUser?.uid == null
-                  // Navigator.of(context).pushReplacementNamed(rou)*/
-
-                },
+          onPressed: () {
+            if (cartModel.totalCartQuantity > 0) {
+              if (userModel.loggedIn) {
+                MainTabControlDelegate.getInstance().changeTab('cart');
+                print('userModel.loggedIn: ${userModel.loggedIn}');
+                onCheckout(cartModel);
+                print(
+                    'cartModel.totalCartQuantity  ${cartModel.totalCartQuantity}');
+              } else {
+                Navigator.of(context).pushNamed(RouteList.login);
+              }
+            } else {
+              MainTabControlDelegate.getInstance().changeTab('home');
+            }
+            // MainTabControlDelegate.getInstance().changeTab('checkout');
+          },
           isExtended: true,
           backgroundColor: Theme.of(context).primaryColor,
           foregroundColor: Colors.white,

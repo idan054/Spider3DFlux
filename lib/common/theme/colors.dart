@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 const kEmptyColor = 0x0D000000;
+const kEmptyColor0 = Color(0x0D000000);
 
 /// basic colors
 const kTeal50 = Color(0xFFE0F2F1);
