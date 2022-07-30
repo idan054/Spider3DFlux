@@ -186,6 +186,9 @@ class PaymentWebviewState extends BaseScreen<PaymentWebview> {
 
 
               if (url.contains('icredit')) {
+                var _month = int.parse(addressModel?.cardExpiryDate?.substring(0, 2) ?? '01');
+                var _year = addressModel?.cardExpiryDate?.substring(3, 5);
+
                 await _controller.evaluateJavascript(
                     'console.log("Scrolling page to bottom..");'
                         'window.scrollTo(0,document.body.scrollHeight);'
@@ -199,26 +202,25 @@ class PaymentWebviewState extends BaseScreen<PaymentWebview> {
                         .cardHolderId}';" // 325245355
                     // "inputs.cvv2.value = '${addressModel.cardCvv}';" // 319
                         "selects = iframe_doc.getElementsByTagName('select');"
-                        "selects.ddlMonth.value = '${int.parse(
-                        addressModel.cardExpiryDate!.substring(
-                            0, 2))}';" // So 03 -> 3
-                        "selects.ddlYear.value  = '20${addressModel
-                        .cardExpiryDate?.substring(3, 5)}';" // 2021
+                        // "selects.ddlMonth.value = '$_month';" // So 03 -> 3
+                        "selects.ddlMonth.value = '$_month';" // So 03 -> 3
+                        // "selects.ddlYear.value  = '20$_year';" // 2021
+                        "selects.ddlYear.value  = '20$_year';" // 2021
                   // "selects.ddlPayments.value = '2';" // תשלומים
                 );
               }
 
               if (url.contains('icredit') && click_checkoutButton) {
-                await _controller.evaluateJavascript(
-                    "iframe_doc = document.getElementById('frame').contentDocument;"
-                        "payButton = document.getElementById('cardsubmitbtn');"
-                        'payButton.click();'
-                );
+                // await _controller.evaluateJavascript(
+                //     "iframe_doc = document.getElementById('frame').contentDocument;"
+                //         "payButton = document.getElementById('cardsubmitbtn');"
+                //         'payButton.click();'
+                // );
               }
             },
           ),
           Offstage(
-            offstage: true,
+            offstage: false,
             child: Container(
               color: Colors.black26,
               child: Center(child: ClipRRect(
